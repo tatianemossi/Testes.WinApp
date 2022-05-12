@@ -40,10 +40,10 @@
             this.btnGravar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.rbPrimeiroBimestre = new System.Windows.Forms.RadioButton();
+            this.rbSegundoBimestre = new System.Windows.Forms.RadioButton();
+            this.rbTerceiroBimestre = new System.Windows.Forms.RadioButton();
+            this.rbQuartoBimestre = new System.Windows.Forms.RadioButton();
             this.txtEnunciado = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
@@ -165,49 +165,49 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Gabarito:";
             // 
-            // radioButton1
+            // rbPrimeiroBimestre
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(173, 468);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(98, 23);
-            this.radioButton1.TabIndex = 13;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "1º Bimestre";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbPrimeiroBimestre.AutoSize = true;
+            this.rbPrimeiroBimestre.Location = new System.Drawing.Point(173, 467);
+            this.rbPrimeiroBimestre.Name = "rbPrimeiroBimestre";
+            this.rbPrimeiroBimestre.Size = new System.Drawing.Size(98, 23);
+            this.rbPrimeiroBimestre.TabIndex = 13;
+            this.rbPrimeiroBimestre.TabStop = true;
+            this.rbPrimeiroBimestre.Text = "1º Bimestre";
+            this.rbPrimeiroBimestre.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbSegundoBimestre
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(175, 499);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(98, 23);
-            this.radioButton2.TabIndex = 14;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "2º Bimestre";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbSegundoBimestre.AutoSize = true;
+            this.rbSegundoBimestre.Location = new System.Drawing.Point(173, 496);
+            this.rbSegundoBimestre.Name = "rbSegundoBimestre";
+            this.rbSegundoBimestre.Size = new System.Drawing.Size(98, 23);
+            this.rbSegundoBimestre.TabIndex = 14;
+            this.rbSegundoBimestre.TabStop = true;
+            this.rbSegundoBimestre.Text = "2º Bimestre";
+            this.rbSegundoBimestre.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbTerceiroBimestre
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(310, 469);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(98, 23);
-            this.radioButton3.TabIndex = 15;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "3º Bimestre";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbTerceiroBimestre.AutoSize = true;
+            this.rbTerceiroBimestre.Location = new System.Drawing.Point(310, 468);
+            this.rbTerceiroBimestre.Name = "rbTerceiroBimestre";
+            this.rbTerceiroBimestre.Size = new System.Drawing.Size(98, 23);
+            this.rbTerceiroBimestre.TabIndex = 15;
+            this.rbTerceiroBimestre.TabStop = true;
+            this.rbTerceiroBimestre.Text = "3º Bimestre";
+            this.rbTerceiroBimestre.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // rbQuartoBimestre
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(310, 499);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(98, 23);
-            this.radioButton4.TabIndex = 16;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "4º Bimestre";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbQuartoBimestre.AutoSize = true;
+            this.rbQuartoBimestre.Location = new System.Drawing.Point(310, 498);
+            this.rbQuartoBimestre.Name = "rbQuartoBimestre";
+            this.rbQuartoBimestre.Size = new System.Drawing.Size(98, 23);
+            this.rbQuartoBimestre.TabIndex = 16;
+            this.rbQuartoBimestre.TabStop = true;
+            this.rbQuartoBimestre.Text = "4º Bimestre";
+            this.rbQuartoBimestre.UseVisualStyleBackColor = true;
             // 
             // txtEnunciado
             // 
@@ -223,10 +223,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 684);
             this.Controls.Add(this.txtEnunciado);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbQuartoBimestre);
+            this.Controls.Add(this.rbTerceiroBimestre);
+            this.Controls.Add(this.rbSegundoBimestre);
+            this.Controls.Add(this.rbPrimeiroBimestre);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
@@ -266,10 +266,10 @@
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rbPrimeiroBimestre;
+        private System.Windows.Forms.RadioButton rbSegundoBimestre;
+        private System.Windows.Forms.RadioButton rbTerceiroBimestre;
+        private System.Windows.Forms.RadioButton rbQuartoBimestre;
         private System.Windows.Forms.RichTextBox txtEnunciado;
     }
 }

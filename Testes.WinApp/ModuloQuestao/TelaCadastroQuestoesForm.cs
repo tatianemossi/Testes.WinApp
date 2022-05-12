@@ -11,7 +11,7 @@ namespace Testes.WinApp.ModuloQuestao
 {
     public partial class TelaCadastroQuestoesForm : Form
     {
-        private QuestaoObjetiva _questaoObjetiva; 
+        private QuestaoObjetiva _questaoObjetiva;
         private ControladorQuestao _controladorQuestao;
         private List<Materia> _materias;
 
@@ -68,6 +68,7 @@ namespace Testes.WinApp.ModuloQuestao
             _questaoObjetiva.Gabarito = txtGabarito.Text;
             _questaoObjetiva.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
             _questaoObjetiva.Materia = (Materia)cmbMaterias.SelectedItem;
+            _questaoObjetiva.Bimestre = CarregarBimestre();
 
             var resultadoValidacao = GravarRegistro(QuestaoObjetiva);
 
@@ -81,7 +82,23 @@ namespace Testes.WinApp.ModuloQuestao
             }
         }
 
-        
+        private string CarregarBimestre()
+        {
+            if (rbPrimeiroBimestre.Checked)
+                return rbPrimeiroBimestre.Text;
+
+            else if (rbSegundoBimestre.Checked)
+                return rbSegundoBimestre.Text;
+
+            else if (rbTerceiroBimestre.Checked)
+                return rbTerceiroBimestre.Text;
+
+            else if (rbQuartoBimestre.Checked)
+                return rbQuartoBimestre.Text;
+
+            return null;
+        }
+
         private void TelaCadastroQuestoesForm_Load(object sender, EventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
