@@ -182,7 +182,12 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.DarkOrchid;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaCadastroMateriasForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tela de Cadastro de Matérias";
             this.grupoSerie.ResumeLayout(false);
             this.grupoSerie.PerformLayout();

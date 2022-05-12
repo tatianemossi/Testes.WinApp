@@ -53,7 +53,7 @@
             this.cadastrosToolStripMenuItem});
             this.toolbox.Location = new System.Drawing.Point(0, 0);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(757, 33);
+            this.toolbox.Size = new System.Drawing.Size(1003, 33);
             this.toolbox.TabIndex = 0;
             this.toolbox.Text = "menuStrip1";
             // 
@@ -62,8 +62,8 @@
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.disciplinaMenuItem,
             this.materiaMenuItem,
-            this.testeMenuItem,
-            this.questaoMenuItem});
+            this.questaoMenuItem,
+            this.testeMenuItem});
             this.cadastrosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cadastrosToolStripMenuItem.ForeColor = System.Drawing.Color.HotPink;
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
@@ -104,7 +104,7 @@
             this.labelRodape});
             this.statusStrip1.Location = new System.Drawing.Point(0, 427);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(757, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1003, 24);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -119,7 +119,7 @@
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegistros.Location = new System.Drawing.Point(0, 58);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(757, 369);
+            this.panelRegistros.Size = new System.Drawing.Size(1003, 369);
             this.panelRegistros.TabIndex = 3;
             // 
             // btnInserir
@@ -178,7 +178,7 @@
             this.labelTipoCadastro});
             this.toolStrip1.Location = new System.Drawing.Point(0, 33);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(757, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1003, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -186,13 +186,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 451);
+            this.ClientSize = new System.Drawing.Size(1003, 451);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolbox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.toolbox;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaPrincipalForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Testes";
             this.toolbox.ResumeLayout(false);
             this.toolbox.PerformLayout();

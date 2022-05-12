@@ -14,12 +14,15 @@ namespace Testes.WinApp.ModuloQuestao
         private QuestaoObjetiva _questaoObjetiva;
         private ControladorQuestao _controladorQuestao;
         private List<Materia> _materias;
+        private List<Disciplina> _disciplinas;
+        private List<Alternativa> _alternativas = new();
 
         public TelaCadastroQuestoesForm(List<Disciplina> disciplinas, List<Materia> materias)
         {
             InitializeComponent();
 
             _materias = materias;
+            _disciplinas = disciplinas;
 
             CarregarDisciplinas(disciplinas);
             CarregarMaterias(materias);
@@ -56,19 +59,23 @@ namespace Testes.WinApp.ModuloQuestao
 
                 txtNumero.Text = _questaoObjetiva.Numero.ToString();
                 txtEnunciado.Text = _questaoObjetiva.Enunciado;
-                txtGabarito.Text = _questaoObjetiva.Gabarito;
-                cmbDisciplinas.SelectedItem = _questaoObjetiva.Disciplina;
-                cmbMaterias.SelectedItem = _questaoObjetiva.Materia;
+                _alternativas = _questaoObjetiva.Alternativas;
+
+                DefinirMateriaSelecionada();
+                DefinirDisciplinaSelecionada();
+
+                CarregarListaAlternativas();
+                CarregarRadioButtonBimestre();
             }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
             _questaoObjetiva.Enunciado = txtEnunciado.Text;
-            _questaoObjetiva.Gabarito = txtGabarito.Text;
             _questaoObjetiva.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
             _questaoObjetiva.Materia = (Materia)cmbMaterias.SelectedItem;
             _questaoObjetiva.Bimestre = CarregarBimestre();
+            _questaoObjetiva.Alternativas = _alternativas;
 
             var resultadoValidacao = GravarRegistro(QuestaoObjetiva);
 
@@ -82,7 +89,25 @@ namespace Testes.WinApp.ModuloQuestao
             }
         }
 
-        private string CarregarBimestre()
+        private void CarregarRadioButtonBimestre()
+        {
+            if (_questaoObjetiva.Bimestre != null)
+            {
+                if (_questaoObjetiva.Bimestre.Equals("1º Bimestre"))
+                    rbPrimeiroBimestre.Checked = true;
+
+                else if (_questaoObjetiva.Bimestre.Equals("2º Bimestre"))
+                    rbSegundoBimestre.Checked = true;
+
+                else if (_questaoObjetiva.Bimestre.Equals("3º Bimestre"))
+                    rbTerceiroBimestre.Checked = true;
+
+                else if (_questaoObjetiva.Bimestre.Equals("4º Bimestre"))
+                    rbQuartoBimestre.Checked = true;
+            }
+        }
+
+        private string? CarregarBimestre()
         {
             if (rbPrimeiroBimestre.Checked)
                 return rbPrimeiroBimestre.Text;
@@ -116,6 +141,92 @@ namespace Testes.WinApp.ModuloQuestao
 
             CarregarMaterias(materiasFiltradas);
             cmbMaterias.Enabled = true;
+            DefinirMateriaSelecionada();
+        }
+
+        private void btnAdicionarResposta_Click(object sender, EventArgs e)
+        {
+            if (AlternativaEhValida())
+            {
+                if (labelIdAlternativa.Text.Length > 0)
+                    _alternativas.RemoveAll(x => x.Id == new Guid(labelIdAlternativa.Text));
+
+                var novaAlternativa = new Alternativa
+                {
+                    Id = Guid.NewGuid(),
+                    Resposta = txtResposta.Text,
+                    Correta = checkBoxAlternativaCorreta.Checked
+                };
+
+                _alternativas.Add(novaAlternativa);
+
+                CarregarListaAlternativas();
+
+                checkBoxAlternativaCorreta.Checked = false;
+                txtResposta.Text = "";
+            }
+        }
+
+        private void CarregarListaAlternativas()
+        {
+            listAlternativas.Items.Clear();
+
+            foreach (var alternativa in _alternativas)
+            {
+                listAlternativas.Items.Add(alternativa);
+            }
+        }
+
+        private bool AlternativaEhValida()
+        {
+            if (txtResposta.Text.Trim() == "")
+            {
+                MessageBox.Show("Resposta deve ser cadastrada!", "Adicionando Alternativas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            var guid = labelIdAlternativa.Text.Length > 0 ? new Guid(labelIdAlternativa.Text) : Guid.Empty;
+
+            if (checkBoxAlternativaCorreta.Checked && _alternativas.Any(x => x.Correta && x.Id != guid))
+            {
+                MessageBox.Show("Alternativa correta já está cadastrada!", "Adicionando Alternativas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (_alternativas.Any(x => x.Resposta == txtResposta.Text && x.Id != guid))
+            {
+                MessageBox.Show("Resposta já cadastrada em outra Alternativa!", "Adicionando Alternativas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void listAlternativas_Click(object sender, EventArgs e)
+        {
+            Alternativa alternativaSelecionada = (Alternativa)listAlternativas.SelectedItem;
+
+            if (alternativaSelecionada != null)
+            {
+                labelIdAlternativa.Text = alternativaSelecionada.Id.ToString();
+                txtResposta.Text = alternativaSelecionada.Resposta;
+                checkBoxAlternativaCorreta.Checked = alternativaSelecionada.Correta;
+            }
+        }
+
+        private void DefinirDisciplinaSelecionada()
+        {
+            var disciplina = _disciplinas.FirstOrDefault(x => x.Numero == _questaoObjetiva.Disciplina?.Numero);
+            cmbDisciplinas.SelectedItem = disciplina;
+        }
+
+        private void DefinirMateriaSelecionada()
+        {
+            var materia = _materias.FirstOrDefault(x => x.Numero == _questaoObjetiva.Materia?.Numero);
+            cmbMaterias.SelectedItem = materia;
         }
     }
 }

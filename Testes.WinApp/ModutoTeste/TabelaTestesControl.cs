@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using Testes.Dominio.ModuloQuestao;
+using Testes.Dominio.ModuloTeste;
 using Testes.WinApp.Compartilhado;
 
-namespace Testes.WinApp.ModuloQuestao
+namespace Testes.WinApp.ModutoTeste
 {
-    public partial class TabelaQuestoesControl : UserControl
+    public partial class TabelaTestesControl : UserControl
     {
-        public TabelaQuestoesControl()
+        public TabelaTestesControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
@@ -21,31 +21,33 @@ namespace Testes.WinApp.ModuloQuestao
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Número", HeaderText = "Número"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Título", HeaderText = "Título"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Data", HeaderText = "Data"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina" },
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Matéria", HeaderText = "Matéria" },
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Enunciado", HeaderText = "Enunciado" },
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Bimestre", HeaderText = "Bimestre" }
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade de Questões", HeaderText = "Quantidade de Questões" }
             };
 
             return colunas;
         }
 
-        public int ObtemNumeroQuestaoSelecionada()
+        public int ObtemNumeroTesteSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
 
-        public void AtualizarRegistros(List<QuestaoObjetiva> questoes)
+        public void AtualizarRegistros(List<Teste> testes)
         {
             grid.Rows.Clear();
 
-            foreach (var questao in questoes)
+            foreach (var teste in testes)
             {
-                grid.Rows.Add(questao.Numero, questao.Disciplina.Nome, questao.Materia.Nome, 
-                    questao.Enunciado, questao.Bimestre);
+                grid.Rows.Add(teste.Numero, teste.Titulo, teste.Data.ToString(), 
+                    teste.Disciplina.Nome, teste.Materia.Nome, teste.NumeroQuestoes);
             }
         }
     }

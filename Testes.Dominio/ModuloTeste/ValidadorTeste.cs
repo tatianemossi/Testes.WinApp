@@ -6,16 +6,19 @@ namespace Testes.Dominio.ModuloTeste
     {
         public ValidadorTeste()
         {
-            RuleFor(x => x.NumeroQuestoes)
+            RuleFor(x => x.Titulo)
                .NotNull().NotEmpty();
 
             RuleFor(x => x.Data)
-               .NotNull().NotEmpty();
+              .NotNull().NotEmpty();
 
             RuleFor(x => x.Disciplina)
                .NotNull().NotEmpty();
 
-            RuleFor(x => x.QuestoesObjetivas)
+            RuleFor(x => x.Materia)
+               .NotNull().NotEmpty();
+
+            RuleFor(x => x.NumeroQuestoes)
                .NotNull().NotEmpty();
         }
 

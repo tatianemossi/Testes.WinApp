@@ -23,10 +23,5 @@ namespace Testes.Infra.Arquivos.ModuloTeste
         {
             return new ValidadorTeste();
         }
-
-        public List<Teste> SelecionarTodos()
-        {
-             return SelecionarTodos();
-        }
     }
 }

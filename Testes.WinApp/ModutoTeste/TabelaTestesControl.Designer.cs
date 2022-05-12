@@ -1,6 +1,6 @@
-﻿namespace Testes.WinApp.ModuloDisciplina
+﻿namespace Testes.WinApp.ModutoTeste
 {
-    partial class TabelaDisiplinasControl
+    partial class TabelaTestesControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,16 +39,16 @@
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 28;
-            this.grid.Size = new System.Drawing.Size(1088, 497);
+            this.grid.Size = new System.Drawing.Size(433, 394);
             this.grid.TabIndex = 0;
             // 
-            // TabelaDisiplinasControl
+            // TabelaTestesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "TabelaDisiplinasControl";
-            this.Size = new System.Drawing.Size(1088, 497);
+            this.Name = "TabelaTestesControl";
+            this.Size = new System.Drawing.Size(433, 394);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

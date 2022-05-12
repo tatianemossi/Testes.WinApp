@@ -10,6 +10,7 @@ using Testes.WinApp.Compartilhado;
 using Testes.WinApp.ModuloDisciplina;
 using Testes.WinApp.ModuloMateria;
 using Testes.WinApp.ModuloQuestao;
+using Testes.WinApp.ModutoTeste;
 
 namespace Testes.WinApp
 {
@@ -95,8 +96,6 @@ namespace Testes.WinApp
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
         {
-
-
             var tipo = opcaoSelecionada.Text;
 
             controlador = controladores[tipo];
@@ -147,7 +146,7 @@ namespace Testes.WinApp
             controladores.Add("Disciplina", new ControladorDisciplina(repositorioDisciplina, repositorioMateria));
             controladores.Add("Matéria", new ControladorMateria(repositorioMateria, repositorioDisciplina));
             controladores.Add("Questão", new ControladorQuestao(repositorioQuestao, repositorioMateria, repositorioDisciplina));
-            //controladores.Add("Despesas", new ControladorDespesa(repositorioDespesa));
+            controladores.Add("Teste", new ControladorTeste(repositorioTeste, repositorioQuestao, repositorioMateria, repositorioDisciplina));
         }
     }
 }
