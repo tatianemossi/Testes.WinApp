@@ -16,15 +16,16 @@ namespace Testes.WinApp.ModutoTeste
         private Teste _teste;
         private List<Materia> _materias;
         private List<Disciplina> _disciplinas;
-        private List<QuestaoObjetiva> _questoes;
+        private List<QuestaoObjetiva> _questoesDisponiveis = new List<QuestaoObjetiva>();
+        private List<QuestaoObjetiva> _questoesSorteadas = new List<QuestaoObjetiva>();
 
-        public TelaCadastroTestesForm(List<Disciplina> disciplinas, List<Materia> materias, List<QuestaoObjetiva> questoes)
+        public TelaCadastroTestesForm(List<Disciplina> disciplinas, List<Materia> materias, List<QuestaoObjetiva> questoesDisponiveis)
         {
             InitializeComponent();
 
             _materias = materias;
             _disciplinas = disciplinas;
-            _questoes = questoes;
+            _questoesDisponiveis = questoesDisponiveis;
 
             CarregarDisciplinas(disciplinas);
             CarregarMaterias(materias);
@@ -63,13 +64,26 @@ namespace Testes.WinApp.ModutoTeste
                 txtTitulo.Text = _teste.Titulo;
                 txtQtdQuestoes.Text = _teste.NumeroQuestoes.ToString();
                 checkBoxRecuperacao.Checked = _teste.Recuperacao;
+                _questoesSorteadas = _teste.QuestoesObjetivas == null ? new List<QuestaoObjetiva>() : _teste.QuestoesObjetivas;
 
                 DefinirMateriaSelecionada();
 
                 DefinirDisciplinaSelecionada();
 
+                CarregarListaQuestoesSorteadas();
+
                 if (_teste.Data > DateTime.MinValue)
                     dtData.Value = _teste.Data;
+            }
+        }
+
+        private void CarregarListaQuestoesSorteadas()
+        {
+            listQuestoesSorteadas.Items.Clear();
+
+            foreach (var questao in _questoesSorteadas)
+            {
+                listQuestoesSorteadas.Items.Add(questao);
             }
         }
 
@@ -93,6 +107,7 @@ namespace Testes.WinApp.ModutoTeste
             _teste.NumeroQuestoes = Convert.ToInt32(txtQtdQuestoes.Text);
             _teste.Data = dtData.Value;
             _teste.Recuperacao = checkBoxRecuperacao.Checked;
+            _teste.QuestoesObjetivas = _questoesSorteadas;
 
             var resultadoValidacao = GravarRegistro(Teste);
 
@@ -142,7 +157,7 @@ namespace Testes.WinApp.ModutoTeste
             var questoesFiltradas = new List<QuestaoObjetiva>();
             var disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
 
-            questoesFiltradas = _questoes.Where(x => x.Disciplina.Numero.Equals(disciplina.Numero)).ToList();
+            questoesFiltradas = _questoesDisponiveis.Where(x => x.Disciplina.Numero.Equals(disciplina.Numero)).ToList();
 
             if (checkBoxRecuperacao.Checked == false)
             {
@@ -159,19 +174,23 @@ namespace Testes.WinApp.ModutoTeste
             else
             {
                 var questoesJaAdicionadas = new List<int>();
+
                 listQuestoesSorteadas.Items.Clear();
+                _questoesSorteadas.Clear();
+
                 var random = new Random();
                 for (int i = 0; i < qtdQuestoes; i++)
                 {
-                    var indiceSorteado = random.Next(0, qtdQuestoes);
+                    var indiceSorteado = random.Next(0, questoesFiltradas.Count);
 
                     while (questoesJaAdicionadas.Any(x => x == indiceSorteado))
                         indiceSorteado = random.Next(0, qtdQuestoes);
 
                     var questaoSorteada = questoesFiltradas[indiceSorteado];
                     questoesJaAdicionadas.Add(indiceSorteado);
+                    _questoesSorteadas.Add(questaoSorteada);
 
-                    listQuestoesSorteadas.Items.Add(questaoSorteada);                    
+                    listQuestoesSorteadas.Items.Add(questaoSorteada);
                 }
             }
         }

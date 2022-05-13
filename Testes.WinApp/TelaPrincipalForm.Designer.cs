@@ -32,8 +32,8 @@
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disciplinaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materiaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questaoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
@@ -42,6 +42,8 @@
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnDuplicar = new System.Windows.Forms.ToolStripButton();
+            this.btnGerarPdf = new System.Windows.Forms.ToolStripButton();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -73,30 +75,30 @@
             // disciplinaMenuItem
             // 
             this.disciplinaMenuItem.Name = "disciplinaMenuItem";
-            this.disciplinaMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.disciplinaMenuItem.Size = new System.Drawing.Size(167, 30);
             this.disciplinaMenuItem.Text = "Disciplina";
             this.disciplinaMenuItem.Click += new System.EventHandler(this.disciplinaMenuItem_Click);
             // 
             // materiaMenuItem
             // 
             this.materiaMenuItem.Name = "materiaMenuItem";
-            this.materiaMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.materiaMenuItem.Size = new System.Drawing.Size(167, 30);
             this.materiaMenuItem.Text = "Matéria";
             this.materiaMenuItem.Click += new System.EventHandler(this.materiaMenuItem_Click);
-            // 
-            // testeMenuItem
-            // 
-            this.testeMenuItem.Name = "testeMenuItem";
-            this.testeMenuItem.Size = new System.Drawing.Size(180, 30);
-            this.testeMenuItem.Text = "Teste";
-            this.testeMenuItem.Click += new System.EventHandler(this.testeMenuItem_Click);
             // 
             // questaoMenuItem
             // 
             this.questaoMenuItem.Name = "questaoMenuItem";
-            this.questaoMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.questaoMenuItem.Size = new System.Drawing.Size(167, 30);
             this.questaoMenuItem.Text = "Questão";
             this.questaoMenuItem.Click += new System.EventHandler(this.questaoMenuItem_Click);
+            // 
+            // testeMenuItem
+            // 
+            this.testeMenuItem.Name = "testeMenuItem";
+            this.testeMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.testeMenuItem.Text = "Teste";
+            this.testeMenuItem.Click += new System.EventHandler(this.testeMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -117,9 +119,9 @@
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 58);
+            this.panelRegistros.Location = new System.Drawing.Point(0, 64);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(1003, 369);
+            this.panelRegistros.Size = new System.Drawing.Size(1003, 363);
             this.panelRegistros.TabIndex = 3;
             // 
             // btnInserir
@@ -166,7 +168,7 @@
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelTipoCadastro.ForeColor = System.Drawing.Color.HotPink;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(115, 22);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(115, 28);
             this.labelTipoCadastro.Text = "[tipoCadastro]";
             // 
             // toolStrip1
@@ -175,12 +177,38 @@
             this.btnInserir,
             this.btnEditar,
             this.btnExcluir,
+            this.btnDuplicar,
+            this.btnGerarPdf,
             this.labelTipoCadastro});
             this.toolStrip1.Location = new System.Drawing.Point(0, 33);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1003, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1003, 31);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnDuplicar
+            // 
+            this.btnDuplicar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDuplicar.Image = global::Testes.WinApp.Properties.Resources.file_copy_FILL0_wght400_GRAD0_opsz24__1_;
+            this.btnDuplicar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDuplicar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDuplicar.Name = "btnDuplicar";
+            this.btnDuplicar.Size = new System.Drawing.Size(28, 28);
+            this.btnDuplicar.Text = "toolStripButton1";
+            this.btnDuplicar.Visible = false;
+            this.btnDuplicar.Click += new System.EventHandler(this.btnDuplicar_Click);
+            // 
+            // btnGerarPdf
+            // 
+            this.btnGerarPdf.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGerarPdf.Image = global::Testes.WinApp.Properties.Resources.picture_as_pdf_FILL0_wght400_GRAD0_opsz24__1_;
+            this.btnGerarPdf.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnGerarPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGerarPdf.Name = "btnGerarPdf";
+            this.btnGerarPdf.Size = new System.Drawing.Size(28, 28);
+            this.btnGerarPdf.Text = "toolStripButton2";
+            this.btnGerarPdf.Visible = false;
+            this.btnGerarPdf.Click += new System.EventHandler(this.btnGerarPdf_Click);
             // 
             // TelaPrincipalForm
             // 
@@ -227,5 +255,7 @@
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnDuplicar;
+        private System.Windows.Forms.ToolStripButton btnGerarPdf;
     }
 }

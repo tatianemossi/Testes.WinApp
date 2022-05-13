@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PDFsharp" Version="1.50.5147" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Testes.Dominio\Testes.Dominio.csproj" />
     <ProjectReference Include="..\Testes.Infra.Arquivos\Testes.Infra.Arquivos.csproj" />
   </ItemGroup>

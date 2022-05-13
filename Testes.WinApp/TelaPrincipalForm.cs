@@ -47,22 +47,32 @@ namespace Testes.WinApp
 
         private void disciplinaMenuItem_Click(object sender, EventArgs e)
         {
+            MostrarBtnCopiarEPdf(false);
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void materiaMenuItem_Click(object sender, EventArgs e)
         {
+            MostrarBtnCopiarEPdf(false);
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void questaoMenuItem_Click(object sender, EventArgs e)
         {
+            MostrarBtnCopiarEPdf(false);
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void testeMenuItem_Click(object sender, EventArgs e)
         {
+            MostrarBtnCopiarEPdf(true);
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+
+        private void MostrarBtnCopiarEPdf(bool mostrar)
+        {
+            btnDuplicar.Visible = mostrar;
+            btnGerarPdf.Visible = mostrar;
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
@@ -78,6 +88,16 @@ namespace Testes.WinApp
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             controlador.Excluir();
+        }
+
+        private void btnDuplicar_Click(object sender, EventArgs e)
+        {
+            ((ControladorTeste)controlador).Duplicar();
+        }
+
+        private void btnGerarPdf_Click(object sender, EventArgs e)
+        {
+            ((ControladorTeste)controlador).GerarPdf();
         }
 
         private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)

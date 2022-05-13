@@ -73,6 +73,16 @@ namespace Testes.WinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_copy_FILL0_wght400_GRAD0_opsz24__1_ {
+            get {
+                object obj = ResourceManager.GetObject("file_copy_FILL0_wght400_GRAD0_opsz24 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap library_add_FILL0_wght400_GRAD0_opsz24 {
             get {
                 object obj = ResourceManager.GetObject("library_add_FILL0_wght400_GRAD0_opsz24", resourceCulture);
@@ -136,6 +146,16 @@ namespace Testes.WinApp.Properties {
         internal static System.Drawing.Bitmap outline_table_rows_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_table_rows_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap picture_as_pdf_FILL0_wght400_GRAD0_opsz24__1_ {
+            get {
+                object obj = ResourceManager.GetObject("picture_as_pdf_FILL0_wght400_GRAD0_opsz24 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

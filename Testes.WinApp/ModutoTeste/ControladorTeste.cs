@@ -1,10 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
 using Testes.Dominio.ModuloQuestao;
 using Testes.Dominio.ModuloTeste;
 using Testes.WinApp.Compartilhado;
+using System;
+using System.Windows.Forms;
+using System.Diagnostics;
+using PdfSharp;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+using System.Text;
 
 namespace Testes.WinApp.ModutoTeste
 {
@@ -46,9 +58,9 @@ namespace Testes.WinApp.ModutoTeste
 
         public override void Editar()
         {
-            var TesteSelecionado = ObtemTesteSelecionado();
+            var testeSelecionado = ObtemTesteSelecionado();
 
-            if (TesteSelecionado == null)
+            if (testeSelecionado == null)
             {
                 MessageBox.Show("Selecione um Teste primeiro",
                 "Edição de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -61,7 +73,7 @@ namespace Testes.WinApp.ModutoTeste
 
             TelaCadastroTestesForm tela = new TelaCadastroTestesForm(disciplinas, materias, questoes);
 
-            tela.Teste = TesteSelecionado;
+            tela.Teste = testeSelecionado;
 
             tela.GravarRegistro = _repositorioTeste.Editar;
 
@@ -71,6 +83,56 @@ namespace Testes.WinApp.ModutoTeste
             {
                 CarregarTestes();
             }
+        }
+
+        public void Duplicar()
+        {
+            var testeSelecionado = ObtemTesteSelecionado();
+
+            if (testeSelecionado == null)
+            {
+                MessageBox.Show("Selecione um Teste primeiro",
+                "Duplicação de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var questoes = _repositorioQuestao.SelecionarTodos();
+            var disciplinas = _repositorioDisciplina.SelecionarTodos();
+            var materias = _repositorioMateria.SelecionarTodos();
+
+            TelaCadastroTestesForm tela = new TelaCadastroTestesForm(disciplinas, materias, questoes);
+
+            tela.Teste = testeSelecionado.Clone();
+
+            tela.GravarRegistro = _repositorioTeste.Inserir;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarTestes();
+            }
+        }
+
+        public void GerarPdf()
+        {
+            PdfDocument document = new PdfDocument();
+            document.Info.Title = "Created with PDFsharp";
+
+            PdfPage page = document.AddPage();
+
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
+
+            gfx.DrawString("Hello, World!", font, XBrushes.Black,
+              new XRect(0, 0, page.Width, page.Height),
+              XStringFormats.Center);
+
+            const string filename = @"C:\temp\HelloWorld.pdf";
+            document.Save(filename);
         }
 
         public override void Excluir()

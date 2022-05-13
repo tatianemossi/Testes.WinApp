@@ -16,6 +16,8 @@ namespace Testes.Infra.Arquivos.Compartilhado
         public RepositorioEmArquivoBase(DataContext dataContext)
         {
             this.dataContext = dataContext;
+            var registros = ObterRegistros();
+            contador = registros.Count;
         }
 
         public abstract List<T> ObterRegistros();
