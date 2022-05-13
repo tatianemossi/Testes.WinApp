@@ -112,6 +112,8 @@ namespace Testes.WinApp
             btnInserir.ToolTipText = configuracao.TooltipInserir;
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+            btnGerarPdf.ToolTipText = configuracao.TooltipGerarPdf;
+            btnDuplicar.ToolTipText = configuracao.TooltipDuplicar;
         }
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)

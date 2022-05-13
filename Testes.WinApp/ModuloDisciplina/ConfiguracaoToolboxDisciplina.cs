@@ -11,9 +11,5 @@ namespace Testes.WinApp.ModuloDisciplina
             public override string TooltipEditar { get { return "Editar uma Disciplina existente"; } }
 
             public override string TooltipExcluir { get { return "Excluir uma Disciplina existente"; } }
-
-            public override string TooltipFiltrar { get { return "Filtrar Disciplina por Status"; } }
-
-            public override bool FiltrarHabilitado => true;
         }
 }

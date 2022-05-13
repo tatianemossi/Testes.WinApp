@@ -1,22 +1,13 @@
-﻿using PdfSharp.Drawing;
-using PdfSharp.Pdf;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
 using Testes.Dominio.ModuloQuestao;
 using Testes.Dominio.ModuloTeste;
 using Testes.WinApp.Compartilhado;
-using System;
-using System.Windows.Forms;
-using System.Diagnostics;
-using PdfSharp;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
-using System.Data.SqlClient;
-using System.Data;
-using System.Configuration;
 using System.Text;
+using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
 
 namespace Testes.WinApp.ModutoTeste
 {
@@ -28,7 +19,7 @@ namespace Testes.WinApp.ModutoTeste
         private readonly IRepositorioDisciplina _repositorioDisciplina;
         private TabelaTestesControl tabelaTestes;
 
-        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioQuestaoObjetiva repositorioQuestao, 
+        public ControladorTeste(IRepositorioTeste repositorioTeste, IRepositorioQuestaoObjetiva repositorioQuestao,
             IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
         {
             _repositorioTeste = repositorioTeste;
@@ -116,23 +107,89 @@ namespace Testes.WinApp.ModutoTeste
 
         public void GerarPdf()
         {
-            PdfDocument document = new PdfDocument();
-            document.Info.Title = "Created with PDFsharp";
+            using (var doc = new PdfSharp.Pdf.PdfDocument())
+            {
+                var testeSelecionado = ObtemTesteSelecionado();
 
-            PdfPage page = document.AddPage();
+                if (testeSelecionado == null)
+                {
+                    MessageBox.Show("Selecione um Teste primeiro",
+                    "Edição de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-            XGraphics gfx = XGraphics.FromPdfPage(page);
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                var page = doc.AddPage();
+                var graphics = XGraphics.FromPdfPage(page);
+                var textFormatter = new XTextFormatter(graphics);
+                var fontTitulo = new XFont("Arial", 14, XFontStyle.Bold);
+                var fontCorpo = new XFont("Arial", 14);
 
-            XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
+                XRect rect = new XRect(0, 50, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Center;
+                textFormatter.DrawString(($"Teste: {testeSelecionado.Titulo}"),
+                    fontTitulo, XBrushes.HotPink, rect,XStringFormats.TopLeft);
 
-            gfx.DrawString("Hello, World!", font, XBrushes.Black,
-              new XRect(0, 0, page.Width, page.Height),
-              XStringFormats.Center);
+                XRect rect1 = new XRect(50, 100, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString("Disciplina:",
+                    fontTitulo, XBrushes.Black, rect1, XStringFormats.TopLeft);
 
-            const string filename = @"C:\temp\HelloWorld.pdf";
-            document.Save(filename);
+                XRect rect2 = new XRect(125, 100, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString(testeSelecionado.Disciplina.Nome,
+                    fontCorpo, XBrushes.Black, rect2, XStringFormats.TopLeft);
+
+                XRect rect3 = new XRect(50, 125, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString("Matéria:",
+                    fontTitulo, XBrushes.Black, rect3, XStringFormats.TopLeft);
+
+                XRect rect4 = new XRect(105, 125, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString(testeSelecionado.Materia.Nome,
+                    fontCorpo, XBrushes.Black, rect4, XStringFormats.TopLeft);
+
+                XRect rect5 = new XRect(50, 150, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString("Data:",
+                    fontTitulo, XBrushes.Black, rect5, XStringFormats.TopLeft);
+
+                XRect rect6 = new XRect(85, 150, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString(testeSelecionado.Data.ToShortDateString(),
+                    fontCorpo, XBrushes.Black, rect6, XStringFormats.TopLeft);
+
+                XRect rect7 = new XRect(50, 200, page.Width, page.Height);
+                textFormatter.Alignment = XParagraphAlignment.Left;
+                textFormatter.DrawString(("Questões: "),
+                    fontTitulo, XBrushes.HotPink, rect7, XStringFormats.TopLeft);
+
+                var y = 200;
+                foreach (var questao in testeSelecionado.QuestoesObjetivas)
+                {
+                    XRect rect8 = new XRect(50, y += 40, page.Width, page.Height);
+                    textFormatter.Alignment = XParagraphAlignment.Left;
+                    textFormatter.DrawString(questao.Enunciado.ToString(),
+                        fontTitulo, XBrushes.Black, rect8, XStringFormats.TopLeft);
+
+                    foreach (var alternativa in questao.Alternativas)
+                    {
+                        XRect rect9 = new XRect(75, y += 25, page.Width, page.Height);
+                        textFormatter.Alignment = XParagraphAlignment.Left;
+                        textFormatter.DrawString(alternativa.Resposta.ToString(),
+                            fontCorpo, XBrushes.Black, rect9, XStringFormats.TopLeft);
+                    }                   
+                }
+
+                doc.Save(@"C:\temp\Testes.pdf");
+
+                MessageBox.Show("Arquivo Gerado com Sucesso!",
+                    "Gerando PDF de Testes",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
         }
 
         public override void Excluir()
@@ -187,5 +244,6 @@ namespace Testes.WinApp.ModutoTeste
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {testes.Count} Teste(s)");
         }
+
     }
 }
