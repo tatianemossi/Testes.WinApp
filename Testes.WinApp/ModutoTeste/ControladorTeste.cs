@@ -129,7 +129,7 @@ namespace Testes.WinApp.ModutoTeste
                 XRect rect = new XRect(0, 50, page.Width, page.Height);
                 textFormatter.Alignment = XParagraphAlignment.Center;
                 textFormatter.DrawString(($"Teste: {testeSelecionado.Titulo}"),
-                    fontTitulo, XBrushes.HotPink, rect,XStringFormats.TopLeft);
+                    fontTitulo, XBrushes.Navy, rect,XStringFormats.TopLeft);
 
                 XRect rect1 = new XRect(50, 100, page.Width, page.Height);
                 textFormatter.Alignment = XParagraphAlignment.Left;
@@ -164,14 +164,15 @@ namespace Testes.WinApp.ModutoTeste
                 XRect rect7 = new XRect(50, 200, page.Width, page.Height);
                 textFormatter.Alignment = XParagraphAlignment.Left;
                 textFormatter.DrawString(("Questões: "),
-                    fontTitulo, XBrushes.HotPink, rect7, XStringFormats.TopLeft);
+                    fontTitulo, XBrushes.Navy, rect7, XStringFormats.TopLeft);
 
                 var y = 200;
+                var numeroQuestao = 1;
                 foreach (var questao in testeSelecionado.QuestoesObjetivas)
                 {
                     XRect rect8 = new XRect(50, y += 40, page.Width, page.Height);
                     textFormatter.Alignment = XParagraphAlignment.Left;
-                    textFormatter.DrawString(questao.Enunciado.ToString(),
+                    textFormatter.DrawString($"{numeroQuestao}. {questao.Enunciado.ToString()}",
                         fontTitulo, XBrushes.Black, rect8, XStringFormats.TopLeft);
 
                     foreach (var alternativa in questao.Alternativas)
@@ -180,7 +181,9 @@ namespace Testes.WinApp.ModutoTeste
                         textFormatter.Alignment = XParagraphAlignment.Left;
                         textFormatter.DrawString(alternativa.Resposta.ToString(),
                             fontCorpo, XBrushes.Black, rect9, XStringFormats.TopLeft);
-                    }                   
+                    }                 
+                    
+                    numeroQuestao++;
                 }
 
                 doc.Save(@"C:\temp\Testes.pdf");

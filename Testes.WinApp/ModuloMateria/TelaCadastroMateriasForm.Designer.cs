@@ -46,7 +46,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.HotPink;
+            this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(28, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 19);
@@ -56,7 +56,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.HotPink;
+            this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(41, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 19);
@@ -66,7 +66,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.HotPink;
+            this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(21, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 19);
@@ -76,7 +76,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.HotPink;
+            this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(53, 168);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 19);
@@ -86,19 +86,18 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.ForeColor = System.Drawing.Color.HotPink;
+            this.button2.ForeColor = System.Drawing.Color.Navy;
             this.button2.Location = new System.Drawing.Point(315, 208);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 53);
             this.button2.TabIndex = 5;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.ForeColor = System.Drawing.Color.HotPink;
+            this.btnGravar.ForeColor = System.Drawing.Color.Navy;
             this.btnGravar.Location = new System.Drawing.Point(200, 208);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(97, 53);
@@ -159,6 +158,7 @@
             // 
             this.grupoSerie.Controls.Add(this.rbSegundaSerie);
             this.grupoSerie.Controls.Add(this.rbPrimeiraSerie);
+            this.grupoSerie.ForeColor = System.Drawing.Color.Navy;
             this.grupoSerie.Location = new System.Drawing.Point(138, 143);
             this.grupoSerie.Name = "grupoSerie";
             this.grupoSerie.Size = new System.Drawing.Size(215, 55);

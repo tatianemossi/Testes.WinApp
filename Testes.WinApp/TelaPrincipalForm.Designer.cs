@@ -67,36 +67,40 @@
             this.questaoMenuItem,
             this.testeMenuItem});
             this.cadastrosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cadastrosToolStripMenuItem.ForeColor = System.Drawing.Color.HotPink;
+            this.cadastrosToolStripMenuItem.ForeColor = System.Drawing.Color.Navy;
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(108, 29);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
             // 
             // disciplinaMenuItem
             // 
+            this.disciplinaMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.disciplinaMenuItem.Name = "disciplinaMenuItem";
-            this.disciplinaMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.disciplinaMenuItem.Size = new System.Drawing.Size(180, 30);
             this.disciplinaMenuItem.Text = "Disciplina";
             this.disciplinaMenuItem.Click += new System.EventHandler(this.disciplinaMenuItem_Click);
             // 
             // materiaMenuItem
             // 
+            this.materiaMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.materiaMenuItem.Name = "materiaMenuItem";
-            this.materiaMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.materiaMenuItem.Size = new System.Drawing.Size(180, 30);
             this.materiaMenuItem.Text = "Matéria";
             this.materiaMenuItem.Click += new System.EventHandler(this.materiaMenuItem_Click);
             // 
             // questaoMenuItem
             // 
+            this.questaoMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.questaoMenuItem.Name = "questaoMenuItem";
-            this.questaoMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.questaoMenuItem.Size = new System.Drawing.Size(180, 30);
             this.questaoMenuItem.Text = "Questão";
             this.questaoMenuItem.Click += new System.EventHandler(this.questaoMenuItem_Click);
             // 
             // testeMenuItem
             // 
+            this.testeMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.testeMenuItem.Name = "testeMenuItem";
-            this.testeMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.testeMenuItem.Size = new System.Drawing.Size(180, 30);
             this.testeMenuItem.Text = "Teste";
             this.testeMenuItem.Click += new System.EventHandler(this.testeMenuItem_Click);
             // 
@@ -165,8 +169,9 @@
             // 
             // labelTipoCadastro
             // 
+            this.labelTipoCadastro.ActiveLinkColor = System.Drawing.Color.Navy;
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTipoCadastro.ForeColor = System.Drawing.Color.HotPink;
+            this.labelTipoCadastro.ForeColor = System.Drawing.Color.PaleVioletRed;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
             this.labelTipoCadastro.Size = new System.Drawing.Size(115, 28);
             this.labelTipoCadastro.Text = "[tipoCadastro]";

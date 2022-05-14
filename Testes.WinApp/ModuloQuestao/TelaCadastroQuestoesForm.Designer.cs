@@ -56,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.HotPink;
+            this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(54, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 19);
@@ -66,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.HotPink;
+            this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(47, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 19);
@@ -76,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.HotPink;
+            this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(57, 143);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 19);
@@ -86,7 +86,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.HotPink;
+            this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(41, 286);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 19);
@@ -124,7 +124,7 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.ForeColor = System.Drawing.Color.HotPink;
+            this.button2.ForeColor = System.Drawing.Color.Navy;
             this.button2.Location = new System.Drawing.Point(517, 627);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 53);
@@ -135,7 +135,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.ForeColor = System.Drawing.Color.HotPink;
+            this.btnGravar.ForeColor = System.Drawing.Color.Navy;
             this.btnGravar.Location = new System.Drawing.Point(402, 627);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(97, 53);
@@ -147,7 +147,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.HotPink;
+            this.label5.ForeColor = System.Drawing.Color.Navy;
             this.label5.Location = new System.Drawing.Point(54, 199);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 19);
@@ -157,6 +157,7 @@
             // rbPrimeiroBimestre
             // 
             this.rbPrimeiroBimestre.AutoSize = true;
+            this.rbPrimeiroBimestre.ForeColor = System.Drawing.Color.Navy;
             this.rbPrimeiroBimestre.Location = new System.Drawing.Point(173, 197);
             this.rbPrimeiroBimestre.Name = "rbPrimeiroBimestre";
             this.rbPrimeiroBimestre.Size = new System.Drawing.Size(98, 23);
@@ -168,6 +169,7 @@
             // rbSegundoBimestre
             // 
             this.rbSegundoBimestre.AutoSize = true;
+            this.rbSegundoBimestre.ForeColor = System.Drawing.Color.Navy;
             this.rbSegundoBimestre.Location = new System.Drawing.Point(173, 226);
             this.rbSegundoBimestre.Name = "rbSegundoBimestre";
             this.rbSegundoBimestre.Size = new System.Drawing.Size(98, 23);
@@ -179,6 +181,7 @@
             // rbTerceiroBimestre
             // 
             this.rbTerceiroBimestre.AutoSize = true;
+            this.rbTerceiroBimestre.ForeColor = System.Drawing.Color.Navy;
             this.rbTerceiroBimestre.Location = new System.Drawing.Point(310, 198);
             this.rbTerceiroBimestre.Name = "rbTerceiroBimestre";
             this.rbTerceiroBimestre.Size = new System.Drawing.Size(98, 23);
@@ -190,6 +193,7 @@
             // rbQuartoBimestre
             // 
             this.rbQuartoBimestre.AutoSize = true;
+            this.rbQuartoBimestre.ForeColor = System.Drawing.Color.Navy;
             this.rbQuartoBimestre.Location = new System.Drawing.Point(310, 228);
             this.rbQuartoBimestre.Name = "rbQuartoBimestre";
             this.rbQuartoBimestre.Size = new System.Drawing.Size(98, 23);
@@ -214,7 +218,7 @@
             this.groupBox1.Controls.Add(this.btnAdicionarResposta);
             this.groupBox1.Controls.Add(this.txtResposta);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.ForeColor = System.Drawing.Color.HotPink;
+            this.groupBox1.ForeColor = System.Drawing.Color.Navy;
             this.groupBox1.Location = new System.Drawing.Point(26, 351);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(605, 270);

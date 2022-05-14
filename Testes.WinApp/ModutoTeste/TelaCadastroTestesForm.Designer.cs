@@ -50,7 +50,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.HotPink;
+            this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(110, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 19);
@@ -60,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.HotPink;
+            this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(126, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 19);
@@ -70,7 +70,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.HotPink;
+            this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(103, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 19);
@@ -80,7 +80,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.HotPink;
+            this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(113, 202);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 19);
@@ -90,7 +90,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.HotPink;
+            this.label5.ForeColor = System.Drawing.Color.Navy;
             this.label5.Location = new System.Drawing.Point(7, 252);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(165, 19);
@@ -123,7 +123,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.HotPink;
+            this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(402, 54);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 19);
@@ -141,7 +141,7 @@
             // checkBoxRecuperacao
             // 
             this.checkBoxRecuperacao.AutoSize = true;
-            this.checkBoxRecuperacao.ForeColor = System.Drawing.Color.HotPink;
+            this.checkBoxRecuperacao.ForeColor = System.Drawing.Color.Navy;
             this.checkBoxRecuperacao.Location = new System.Drawing.Point(402, 102);
             this.checkBoxRecuperacao.Name = "checkBoxRecuperacao";
             this.checkBoxRecuperacao.Size = new System.Drawing.Size(169, 23);
@@ -170,7 +170,7 @@
             // 
             // btnSortearQuestoes
             // 
-            this.btnSortearQuestoes.ForeColor = System.Drawing.Color.HotPink;
+            this.btnSortearQuestoes.ForeColor = System.Drawing.Color.Navy;
             this.btnSortearQuestoes.Location = new System.Drawing.Point(25, 574);
             this.btnSortearQuestoes.Name = "btnSortearQuestoes";
             this.btnSortearQuestoes.Size = new System.Drawing.Size(134, 55);
@@ -182,7 +182,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.ForeColor = System.Drawing.Color.HotPink;
+            this.btnGravar.ForeColor = System.Drawing.Color.Navy;
             this.btnGravar.Location = new System.Drawing.Point(331, 574);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(134, 55);
@@ -194,7 +194,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.ForeColor = System.Drawing.Color.HotPink;
+            this.btnCancelar.ForeColor = System.Drawing.Color.Navy;
             this.btnCancelar.Location = new System.Drawing.Point(471, 574);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(134, 55);
@@ -234,7 +234,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.ForeColor = System.Drawing.Color.HotPink;
+            this.ForeColor = System.Drawing.Color.Navy;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroTestesForm";

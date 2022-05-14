@@ -39,7 +39,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.HotPink;
+            this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(32, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 19);
@@ -49,7 +49,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.HotPink;
+            this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(45, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 19);
@@ -59,7 +59,7 @@
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.ForeColor = System.Drawing.Color.HotPink;
+            this.btnGravar.ForeColor = System.Drawing.Color.Navy;
             this.btnGravar.Location = new System.Drawing.Point(252, 186);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(97, 53);
@@ -71,7 +71,7 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.ForeColor = System.Drawing.Color.HotPink;
+            this.button2.ForeColor = System.Drawing.Color.Navy;
             this.button2.Location = new System.Drawing.Point(368, 186);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 53);
@@ -81,7 +81,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.ForeColor = System.Drawing.Color.HotPink;
+            this.txtNome.ForeColor = System.Drawing.Color.Navy;
             this.txtNome.Location = new System.Drawing.Point(113, 87);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(221, 26);
@@ -90,7 +90,7 @@
             // txtNumero
             // 
             this.txtNumero.Enabled = false;
-            this.txtNumero.ForeColor = System.Drawing.Color.HotPink;
+            this.txtNumero.ForeColor = System.Drawing.Color.Navy;
             this.txtNumero.Location = new System.Drawing.Point(113, 35);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(100, 26);
