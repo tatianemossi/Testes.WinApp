@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{D8CBA7FD-4808-48A7-9024-9E3036FF8B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes.Dominio", "Testes.Dominio\Testes.Dominio.csproj", "{DEFCF423-9036-4632-9A13-4F3BCDA5E88D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testes.Dominio", "Testes.Dominio\Testes.Dominio.csproj", "{DEFCF423-9036-4632-9A13-4F3BCDA5E88D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arquivos", "Arquivos", "{FF8B1F71-DACC-4BB6-9954-26A03FE2964A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes.Infra.Arquivos", "Testes.Infra.Arquivos\Testes.Infra.Arquivos.csproj", "{08718925-1182-42FE-BF45-C17ABB03F2C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testes.Infra.Arquivos", "Testes.Infra.Arquivos\Testes.Infra.Arquivos.csproj", "{08718925-1182-42FE-BF45-C17ABB03F2C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

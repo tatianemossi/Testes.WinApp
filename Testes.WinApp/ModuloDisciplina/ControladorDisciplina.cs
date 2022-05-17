@@ -20,7 +20,7 @@ namespace Testes.WinApp.ModuloDisciplina
 
         public override void Inserir()
         {
-            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm();
+            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm(this.repositorioDisciplina);
             tela.Disciplina = new Disciplina();
 
             tela.GravarRegistro = repositorioDisciplina.Inserir;
@@ -28,9 +28,7 @@ namespace Testes.WinApp.ModuloDisciplina
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-            {
                 CarregarDisciplinas();
-            }
         }
 
         public override void Editar()
@@ -44,7 +42,7 @@ namespace Testes.WinApp.ModuloDisciplina
                 return;
             }
 
-            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm();
+            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm(repositorioDisciplina);
 
             tela.Disciplina = DisciplinaSelecionada;
 
@@ -86,7 +84,6 @@ namespace Testes.WinApp.ModuloDisciplina
             }
         }
 
-       
         public override UserControl ObtemListagem()
         {
             if (tabelaDisciplinas == null)
@@ -101,7 +98,6 @@ namespace Testes.WinApp.ModuloDisciplina
         {
             return new ConfiguracaoToolboxDisciplina();
         }
-
 
         private Disciplina ObtemDisciplinaSelecionada()
         {

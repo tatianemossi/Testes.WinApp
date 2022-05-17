@@ -9,13 +9,16 @@ namespace Testes.WinApp.ModuloMateria
 {
     public partial class TelaCadastroMateriasForm : Form
     {
-        private Materia materia;
-        private ControladorMateria ControladorMateria;
+        private Materia _materia;
+        private ControladorMateria _controladorMateria;
+        private IRepositorioMateria _repositorioMateria;
 
 
-        public TelaCadastroMateriasForm(List<Disciplina> disciplinas)
+        public TelaCadastroMateriasForm(List<Disciplina> disciplinas, IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
+
+            _repositorioMateria = repositorioMateria;
 
             CarregarDisciplinas(disciplinas);
         }
@@ -34,32 +37,43 @@ namespace Testes.WinApp.ModuloMateria
 
         public Materia Materia
         {
-            get { return materia; }
+            get { return _materia; }
             set
             {
-                materia = value;
+                _materia = value;
 
                 txtNumero.Text = Materia.Numero.ToString();
                 txtNome.Text = Materia.Nome;
-                cmbDisciplinas.SelectedItem = materia.Disciplina;
+                cmbDisciplinas.SelectedItem = _materia.Disciplina;
             }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            materia.Nome = txtNome.Text;
-            materia.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
-            materia.Serie = VerificarSerieMarcada();
+            _materia.Nome = txtNome.Text;
+            _materia.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
+            _materia.Serie = VerificarSerieMarcada();
 
-            var resultadoValidacao = GravarRegistro(Materia);
-
-            if (resultadoValidacao.IsValid == false)
+            if (_repositorioMateria.MateriaJaExiste(_materia.Nome))
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
-
+                MessageBox.Show("Já existe uma matéria com este nome.",
+                    "Inserindo Matéria",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.None;
+            }
+            else
+            {
+                var resultadoValidacao = GravarRegistro(Materia);
+
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 

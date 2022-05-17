@@ -76,7 +76,7 @@
             // 
             this.disciplinaMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.disciplinaMenuItem.Name = "disciplinaMenuItem";
-            this.disciplinaMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.disciplinaMenuItem.Size = new System.Drawing.Size(167, 30);
             this.disciplinaMenuItem.Text = "Disciplina";
             this.disciplinaMenuItem.Click += new System.EventHandler(this.disciplinaMenuItem_Click);
             // 
@@ -84,7 +84,7 @@
             // 
             this.materiaMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.materiaMenuItem.Name = "materiaMenuItem";
-            this.materiaMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.materiaMenuItem.Size = new System.Drawing.Size(167, 30);
             this.materiaMenuItem.Text = "Matéria";
             this.materiaMenuItem.Click += new System.EventHandler(this.materiaMenuItem_Click);
             // 
@@ -92,7 +92,7 @@
             // 
             this.questaoMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.questaoMenuItem.Name = "questaoMenuItem";
-            this.questaoMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.questaoMenuItem.Size = new System.Drawing.Size(167, 30);
             this.questaoMenuItem.Text = "Questão";
             this.questaoMenuItem.Click += new System.EventHandler(this.questaoMenuItem_Click);
             // 
@@ -100,7 +100,7 @@
             // 
             this.testeMenuItem.ForeColor = System.Drawing.SystemColors.GrayText;
             this.testeMenuItem.Name = "testeMenuItem";
-            this.testeMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.testeMenuItem.Size = new System.Drawing.Size(167, 30);
             this.testeMenuItem.Text = "Teste";
             this.testeMenuItem.Click += new System.EventHandler(this.testeMenuItem_Click);
             // 
@@ -123,9 +123,9 @@
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRegistros.Location = new System.Drawing.Point(0, 64);
+            this.panelRegistros.Location = new System.Drawing.Point(0, 58);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(1003, 363);
+            this.panelRegistros.Size = new System.Drawing.Size(1003, 369);
             this.panelRegistros.TabIndex = 3;
             // 
             // btnInserir
@@ -173,7 +173,7 @@
             this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelTipoCadastro.ForeColor = System.Drawing.Color.PaleVioletRed;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(115, 28);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(115, 22);
             this.labelTipoCadastro.Text = "[tipoCadastro]";
             // 
             // toolStrip1
@@ -187,7 +187,7 @@
             this.labelTipoCadastro});
             this.toolStrip1.Location = new System.Drawing.Point(0, 33);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1003, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1003, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -232,7 +232,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Testes";
+            this.Text = "Gerenciador de Testes";
             this.toolbox.ResumeLayout(false);
             this.toolbox.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

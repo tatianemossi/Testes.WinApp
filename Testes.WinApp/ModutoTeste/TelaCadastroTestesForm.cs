@@ -23,6 +23,8 @@ namespace Testes.WinApp.ModutoTeste
         {
             InitializeComponent();
 
+            dtData.MinDate = DateTime.Now;
+
             _materias = materias;
             _disciplinas = disciplinas;
             _questoesDisponiveis = questoesDisponiveis;
@@ -73,7 +75,10 @@ namespace Testes.WinApp.ModutoTeste
                 CarregarListaQuestoesSorteadas();
 
                 if (_teste.Data > DateTime.MinValue)
+                {
+                    dtData.MinDate = _teste.Data;
                     dtData.Value = _teste.Data;
+                }
             }
         }
 
@@ -192,6 +197,19 @@ namespace Testes.WinApp.ModutoTeste
 
                     listQuestoesSorteadas.Items.Add(questaoSorteada);
                 }
+            }
+        }
+
+        private void checkBoxRecuperacao_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRecuperacao.Checked)
+            {
+                cmbMaterias.Enabled = false;
+                cmbMaterias.SelectedIndex = -1;
+            }
+            else
+            {
+                cmbMaterias.Enabled = true;
             }
         }
     }

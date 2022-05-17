@@ -7,43 +7,56 @@ namespace Testes.WinApp.ModuloDisciplina
 {
     public partial class TelaCadastroDisciplinasForm : Form
     {
-        private Disciplina disciplina;
-        private ControladorDisciplina ControladorDisciplina;
+        private Disciplina _disciplina;
+        private IRepositorioDisciplina _repositorioDisciplina;
 
 
-        public TelaCadastroDisciplinasForm()
+        public TelaCadastroDisciplinasForm(IRepositorioDisciplina repositorioDisciplina)
         {
             InitializeComponent();
+
+            _repositorioDisciplina = repositorioDisciplina;
         }
 
-        
+
         public Func<Disciplina, ValidationResult> GravarRegistro { get; set; }
 
         public Disciplina Disciplina
         {
-            get { return disciplina; }
+            get { return _disciplina; }
             set
             {
-                disciplina = value;
+                _disciplina = value;
 
-                txtNumero.Text = disciplina.Numero.ToString();
-                txtNome.Text = disciplina.Nome;
+                txtNumero.Text = _disciplina.Numero.ToString();
+                txtNome.Text = _disciplina.Nome;
             }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            disciplina.Nome = txtNome.Text;
+            _disciplina.Nome = txtNome.Text;
 
-            var resultadoValidacao = GravarRegistro(disciplina);
-
-            if (resultadoValidacao.IsValid == false)
+            if (_repositorioDisciplina.DisciplinaJaExiste(_disciplina.Nome))
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
-
+                MessageBox.Show("Já existe uma disciplina com este nome.",
+                    "Inserindo Disciplina",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.None;
+            }
+            else
+            {
+                var resultadoValidacao = GravarRegistro(_disciplina);
+
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 

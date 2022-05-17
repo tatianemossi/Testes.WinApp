@@ -12,6 +12,11 @@ namespace Testes.Infra.Arquivos.ModuloDisciplina
         public RepositorioDisciplinaEmArquivo(DataContext dataContext) 
             : base(dataContext) { }
 
+        public bool DisciplinaJaExiste(string nome)
+        {
+            return dataContext.Disciplinas.Any(x => x.Nome.Equals(nome));
+        }
+
         public override List<Disciplina> ObterRegistros()
         {
             return dataContext.Disciplinas;

@@ -148,6 +148,7 @@
             this.checkBoxRecuperacao.TabIndex = 10;
             this.checkBoxRecuperacao.Text = "Prova de Recuperação?";
             this.checkBoxRecuperacao.UseVisualStyleBackColor = true;
+            this.checkBoxRecuperacao.CheckedChanged += new System.EventHandler(this.checkBoxRecuperacao_CheckedChanged);
             // 
             // cmbDisciplinas
             // 

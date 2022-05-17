@@ -46,8 +46,10 @@ namespace Testes.WinApp.ModutoTeste
 
             foreach (var teste in testes)
             {
-                grid.Rows.Add(teste.Numero, teste.Titulo, teste.Data.ToString(), 
-                    teste.Disciplina.Nome, teste.Materia.Nome, teste.NumeroQuestoes);
+                var textoMateria = teste.Materia == null ? "Todas" : teste.Materia.Nome;
+
+                grid.Rows.Add(teste.Numero, teste.Titulo, teste.Data.ToString(),
+                    teste.Disciplina.Nome, textoMateria, teste.NumeroQuestoes);
             }
         }
     }

@@ -22,7 +22,7 @@ namespace Testes.WinApp.ModuloMateria
         {
             var disciplinas = repositorioDisciplina.SelecionarTodos();
 
-            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas);
+            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas, this.repositorioMateria);
             tela.Materia = new Materia();
 
             tela.GravarRegistro = repositorioMateria.Inserir;
@@ -48,7 +48,7 @@ namespace Testes.WinApp.ModuloMateria
 
             var disciplinas = repositorioDisciplina.SelecionarTodos();
 
-            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas);
+            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas, this.repositorioMateria);
 
             tela.Materia = materiaSelecionada;
 

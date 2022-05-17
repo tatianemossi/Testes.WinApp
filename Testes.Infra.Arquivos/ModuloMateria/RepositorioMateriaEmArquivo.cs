@@ -19,6 +19,11 @@ namespace Testes.Infra.Arquivos.ModuloMateria
             return dataContext.Materias.Any(x => x.Disciplina.Numero == numero);
         }
 
+        public bool MateriaJaExiste(string nome)
+        {
+            return dataContext.Materias.Any(x => x.Nome.Equals(nome));
+        }
+
         public override List<Materia> ObterRegistros()
         {
             return dataContext.Materias;

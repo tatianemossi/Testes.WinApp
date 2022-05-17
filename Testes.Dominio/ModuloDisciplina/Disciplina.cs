@@ -12,8 +12,6 @@ namespace Testes.Dominio.ModuloDisciplina
 
         public string Nome { get; set; }
 
-        public List<QuestaoObjetiva> QuestoesObjetivas { get; set; }
-
         public override void Atualizar(Disciplina registro)
         {
         }
