@@ -103,22 +103,23 @@
             this.txtNumero.Location = new System.Drawing.Point(213, 50);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(41, 26);
-            this.txtNumero.TabIndex = 5;
+            this.txtNumero.TabIndex = 0;
             // 
             // txtTitulo
             // 
             this.txtTitulo.Location = new System.Drawing.Point(213, 99);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(169, 26);
-            this.txtTitulo.TabIndex = 6;
+            this.txtTitulo.TabIndex = 2;
             // 
             // txtQtdQuestoes
             // 
             this.txtQtdQuestoes.Location = new System.Drawing.Point(213, 248);
             this.txtQtdQuestoes.Name = "txtQtdQuestoes";
             this.txtQtdQuestoes.Size = new System.Drawing.Size(45, 26);
-            this.txtQtdQuestoes.TabIndex = 7;
+            this.txtQtdQuestoes.TabIndex = 6;
             this.txtQtdQuestoes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQtdQuestoes_KeyPress);
+            this.txtQtdQuestoes.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtQtdQuestoes_KeyUp);
             // 
             // label6
             // 
@@ -136,7 +137,7 @@
             this.dtData.Location = new System.Drawing.Point(459, 52);
             this.dtData.Name = "dtData";
             this.dtData.Size = new System.Drawing.Size(96, 26);
-            this.dtData.TabIndex = 9;
+            this.dtData.TabIndex = 1;
             // 
             // checkBoxRecuperacao
             // 
@@ -145,7 +146,7 @@
             this.checkBoxRecuperacao.Location = new System.Drawing.Point(402, 102);
             this.checkBoxRecuperacao.Name = "checkBoxRecuperacao";
             this.checkBoxRecuperacao.Size = new System.Drawing.Size(169, 23);
-            this.checkBoxRecuperacao.TabIndex = 10;
+            this.checkBoxRecuperacao.TabIndex = 3;
             this.checkBoxRecuperacao.Text = "Prova de Recuperação?";
             this.checkBoxRecuperacao.UseVisualStyleBackColor = true;
             this.checkBoxRecuperacao.CheckedChanged += new System.EventHandler(this.checkBoxRecuperacao_CheckedChanged);
@@ -157,7 +158,7 @@
             this.cmbDisciplinas.Location = new System.Drawing.Point(213, 148);
             this.cmbDisciplinas.Name = "cmbDisciplinas";
             this.cmbDisciplinas.Size = new System.Drawing.Size(169, 27);
-            this.cmbDisciplinas.TabIndex = 11;
+            this.cmbDisciplinas.TabIndex = 4;
             this.cmbDisciplinas.SelectedValueChanged += new System.EventHandler(this.cmbDisciplinas_SelectedValueChanged);
             // 
             // cmbMaterias
@@ -167,7 +168,7 @@
             this.cmbMaterias.Location = new System.Drawing.Point(213, 198);
             this.cmbMaterias.Name = "cmbMaterias";
             this.cmbMaterias.Size = new System.Drawing.Size(169, 27);
-            this.cmbMaterias.TabIndex = 12;
+            this.cmbMaterias.TabIndex = 5;
             // 
             // btnSortearQuestoes
             // 
@@ -175,7 +176,7 @@
             this.btnSortearQuestoes.Location = new System.Drawing.Point(25, 574);
             this.btnSortearQuestoes.Name = "btnSortearQuestoes";
             this.btnSortearQuestoes.Size = new System.Drawing.Size(134, 55);
-            this.btnSortearQuestoes.TabIndex = 14;
+            this.btnSortearQuestoes.TabIndex = 8;
             this.btnSortearQuestoes.Text = "Sortear Questões";
             this.btnSortearQuestoes.UseVisualStyleBackColor = true;
             this.btnSortearQuestoes.Click += new System.EventHandler(this.btnSortearQuestoes_Click);
@@ -187,7 +188,7 @@
             this.btnGravar.Location = new System.Drawing.Point(331, 574);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(134, 55);
-            this.btnGravar.TabIndex = 15;
+            this.btnGravar.TabIndex = 9;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -199,7 +200,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(471, 574);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(134, 55);
-            this.btnCancelar.TabIndex = 16;
+            this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -211,7 +212,7 @@
             this.listQuestoesSorteadas.Location = new System.Drawing.Point(25, 306);
             this.listQuestoesSorteadas.Name = "listQuestoesSorteadas";
             this.listQuestoesSorteadas.Size = new System.Drawing.Size(580, 251);
-            this.listQuestoesSorteadas.TabIndex = 17;
+            this.listQuestoesSorteadas.TabIndex = 7;
             // 
             // TelaCadastroTestesForm
             // 

@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
@@ -12,7 +13,7 @@ namespace Testes.WinApp.ModuloMateria
         private Materia _materia;
         private ControladorMateria _controladorMateria;
         private IRepositorioMateria _repositorioMateria;
-
+        private List<Disciplina> _disciplinas;
 
         public TelaCadastroMateriasForm(List<Disciplina> disciplinas, IRepositorioMateria repositorioMateria)
         {
@@ -20,14 +21,16 @@ namespace Testes.WinApp.ModuloMateria
 
             _repositorioMateria = repositorioMateria;
 
-            CarregarDisciplinas(disciplinas);
+            _disciplinas = disciplinas;
+
+            CarregarDisciplinas();
         }
 
-        private void CarregarDisciplinas(List<Disciplina> disciplinas)
+        private void CarregarDisciplinas()
         {
             cmbDisciplinas.Items.Clear();
 
-            foreach (var item in disciplinas)
+            foreach (var item in _disciplinas)
             {
                 cmbDisciplinas.Items.Add(item);
             }
@@ -45,6 +48,10 @@ namespace Testes.WinApp.ModuloMateria
                 txtNumero.Text = Materia.Numero.ToString();
                 txtNome.Text = Materia.Nome;
                 cmbDisciplinas.SelectedItem = _materia.Disciplina;
+
+                DefinirSerieSelecionada();
+
+                DefinirDisciplinaSelecionada();
             }
         }
 
@@ -54,7 +61,7 @@ namespace Testes.WinApp.ModuloMateria
             _materia.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
             _materia.Serie = VerificarSerieMarcada();
 
-            if (_repositorioMateria.MateriaJaExiste(_materia.Nome))
+            if (_repositorioMateria.MateriaJaExiste(_materia.Nome, _materia.Numero))
             {
                 MessageBox.Show("Já existe uma matéria com este nome.",
                     "Inserindo Matéria",
@@ -97,6 +104,18 @@ namespace Testes.WinApp.ModuloMateria
         private void TelaCadastroMateriasForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void DefinirSerieSelecionada()
+        {
+            rbPrimeiraSerie.Checked = _materia.Serie == "1ª Série";
+            rbSegundaSerie.Checked = _materia.Serie == "2ª Série";
+        }
+
+        private void DefinirDisciplinaSelecionada()
+        {
+            var disciplina = _disciplinas.FirstOrDefault(x => x.Numero == _materia.Disciplina?.Numero);
+            cmbDisciplinas.SelectedItem = disciplina;
         }
     }
 }

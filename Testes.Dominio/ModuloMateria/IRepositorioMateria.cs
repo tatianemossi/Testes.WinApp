@@ -9,6 +9,6 @@ namespace Testes.Dominio.ModuloMateria
 
         bool ExisteMateriaPeloNumeroDisciplina(int numero);
 
-        bool MateriaJaExiste(string nome);
+        bool MateriaJaExiste(string nome, int numero);
     }
 }

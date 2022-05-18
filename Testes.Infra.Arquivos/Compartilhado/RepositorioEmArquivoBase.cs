@@ -17,7 +17,12 @@ namespace Testes.Infra.Arquivos.Compartilhado
         {
             this.dataContext = dataContext;
             var registros = ObterRegistros();
-            contador = registros.Count;
+            contador = BuscarUltimoNumeroCadastrado(registros);
+        }
+
+        public virtual int BuscarUltimoNumeroCadastrado(List<T> registros)
+        {
+            return registros.OrderByDescending(x => x.Numero).Select(x => x.Numero).FirstOrDefault();
         }
 
         public abstract List<T> ObterRegistros();

@@ -24,6 +24,10 @@ namespace Testes.Dominio.ModuloTeste
 
             RuleFor(x => x.NumeroQuestoes)
                .NotNull().NotEmpty();
+
+            RuleFor(x => x.QuestoesObjetivas)
+               .Must(lista => lista.Count >= 5)
+               .WithMessage("Obrigatório inserir no minimo 5 questões");
         }
 
     }

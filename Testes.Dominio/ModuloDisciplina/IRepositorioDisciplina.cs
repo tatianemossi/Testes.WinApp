@@ -7,6 +7,6 @@ namespace Testes.Dominio.ModuloDisciplina
     {
         List<Disciplina> SelecionarTodos();
 
-        bool DisciplinaJaExiste(string nome);
+        bool DisciplinaJaExiste(string nome, int numero);
     }
 }

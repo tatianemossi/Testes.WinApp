@@ -24,8 +24,8 @@ namespace Testes.WinApp.ModuloQuestao
             _materias = materias;
             _disciplinas = disciplinas;
 
-            CarregarDisciplinas(disciplinas);
-            CarregarMaterias(materias);
+            CarregarDisciplinas();
+            CarregarMaterias(_materias);
         }
 
         private void CarregarMaterias(List<Materia> materias)
@@ -38,11 +38,11 @@ namespace Testes.WinApp.ModuloQuestao
             }
         }
 
-        private void CarregarDisciplinas(List<Disciplina> disciplinas)
+        private void CarregarDisciplinas()
         {
             cmbDisciplinas.Items.Clear();
 
-            foreach (var item in disciplinas)
+            foreach (var item in _disciplinas)
             {
                 cmbDisciplinas.Items.Add(item);
             }
@@ -195,7 +195,7 @@ namespace Testes.WinApp.ModuloQuestao
                 return false;
             }
 
-            if (_alternativas.Any(x => x.Resposta == txtResposta.Text && x.Id != guid))
+            if (_alternativas.Any(x => x.Resposta.ToUpper() == txtResposta.Text.ToUpper() && x.Id != guid))
             {
                 MessageBox.Show("Resposta já cadastrada em outra Alternativa!", "Adicionando Alternativas",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

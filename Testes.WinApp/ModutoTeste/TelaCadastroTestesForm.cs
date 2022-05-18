@@ -109,7 +109,7 @@ namespace Testes.WinApp.ModutoTeste
             _teste.Titulo = txtTitulo.Text;
             _teste.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
             _teste.Materia = (Materia)cmbMaterias.SelectedItem;
-            _teste.NumeroQuestoes = Convert.ToInt32(txtQtdQuestoes.Text);
+            _teste.NumeroQuestoes = txtQtdQuestoes.Text.Length > 0 ? Convert.ToInt32(txtQtdQuestoes.Text) : 0;
             _teste.Data = dtData.Value;
             _teste.Recuperacao = checkBoxRecuperacao.Checked;
             _teste.QuestoesObjetivas = _questoesSorteadas;
@@ -152,9 +152,25 @@ namespace Testes.WinApp.ModutoTeste
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
                 e.Handled = true;
 
-
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
                 e.Handled = true;
+        }
+
+        private void txtQtdQuestoes_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtQtdQuestoes.Text.Length > 0)
+            {
+                var numeroQuestoes = Convert.ToInt32(txtQtdQuestoes.Text);
+
+                if (numeroQuestoes < 5)
+                {
+                    MessageBox.Show("Obrigatório informar no mínimo 5",
+                        "Sorteando questões",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    txtQtdQuestoes.Text = "5";
+                }
+            }            
         }
 
         private void btnSortearQuestoes_Click(object sender, EventArgs e)

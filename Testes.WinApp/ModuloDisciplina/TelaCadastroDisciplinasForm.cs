@@ -37,7 +37,7 @@ namespace Testes.WinApp.ModuloDisciplina
         {
             _disciplina.Nome = txtNome.Text;
 
-            if (_repositorioDisciplina.DisciplinaJaExiste(_disciplina.Nome))
+            if (_repositorioDisciplina.DisciplinaJaExiste(_disciplina.Nome, _disciplina.Numero))
             {
                 MessageBox.Show("Já existe uma disciplina com este nome.",
                     "Inserindo Disciplina",
