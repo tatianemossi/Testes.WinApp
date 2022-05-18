@@ -50,6 +50,7 @@
             this.btnAdicionarResposta = new System.Windows.Forms.Button();
             this.txtResposta = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.labelLetraAlternativa = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -212,6 +213,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelLetraAlternativa);
             this.groupBox1.Controls.Add(this.labelIdAlternativa);
             this.groupBox1.Controls.Add(this.listAlternativas);
             this.groupBox1.Controls.Add(this.checkBoxAlternativaCorreta);
@@ -282,6 +284,15 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Resposta:";
             // 
+            // labelLetraAlternativa
+            // 
+            this.labelLetraAlternativa.AutoSize = true;
+            this.labelLetraAlternativa.Location = new System.Drawing.Point(105, 17);
+            this.labelLetraAlternativa.Name = "labelLetraAlternativa";
+            this.labelLetraAlternativa.Size = new System.Drawing.Size(0, 19);
+            this.labelLetraAlternativa.TabIndex = 6;
+            this.labelLetraAlternativa.Visible = false;
+            // 
             // TelaCadastroQuestoesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -343,5 +354,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBoxAlternativaCorreta;
         private System.Windows.Forms.Label labelIdAlternativa;
+        private System.Windows.Forms.Label labelLetraAlternativa;
     }
 }

@@ -8,6 +8,7 @@ using Testes.WinApp.Compartilhado;
 using System.Text;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
+using System;
 
 namespace Testes.WinApp.ModutoTeste
 {
@@ -172,14 +173,16 @@ namespace Testes.WinApp.ModutoTeste
                 {
                     XRect rect8 = new XRect(50, y += 40, page.Width, page.Height);
                     textFormatter.Alignment = XParagraphAlignment.Left;
-                    textFormatter.DrawString($"{numeroQuestao}. {questao.Enunciado.ToString()}",
+                    textFormatter.DrawString($"{numeroQuestao}. {questao.Enunciado}",
                         fontTitulo, XBrushes.Black, rect8, XStringFormats.TopLeft);
 
                     foreach (var alternativa in questao.Alternativas)
                     {
+                        string letra = Convert.ToChar(alternativa.Indice).ToString();
+
                         XRect rect9 = new XRect(75, y += 25, page.Width, page.Height);
                         textFormatter.Alignment = XParagraphAlignment.Left;
-                        textFormatter.DrawString(alternativa.Resposta.ToString(),
+                        textFormatter.DrawString($"{letra.ToLower()}) {alternativa.Resposta}",
                             fontCorpo, XBrushes.Black, rect9, XStringFormats.TopLeft);
                     }                 
                     

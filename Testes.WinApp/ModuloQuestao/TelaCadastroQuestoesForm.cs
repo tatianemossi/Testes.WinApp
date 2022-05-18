@@ -154,6 +154,7 @@ namespace Testes.WinApp.ModuloQuestao
                 var novaAlternativa = new Alternativa
                 {
                     Id = Guid.NewGuid(),
+                    Indice = BuscarIndiceAlternativas(),
                     Resposta = txtResposta.Text,
                     Correta = checkBoxAlternativaCorreta.Checked
                 };
@@ -164,16 +165,46 @@ namespace Testes.WinApp.ModuloQuestao
 
                 checkBoxAlternativaCorreta.Checked = false;
                 txtResposta.Text = "";
+
+                DesabilitaBotaoAdicionarResposta();
             }
         }
+
+        private void DesabilitaBotaoAdicionarResposta()
+        {
+            if (_alternativas.Count == 5)
+                btnAdicionarResposta.Enabled = false;
+        }
+
+        private int BuscarIndiceAlternativas()
+        {
+            if (labelLetraAlternativa.Text.Length > 0)
+            {
+                char charLetra = char.Parse(labelLetraAlternativa.Text.ToUpper());
+                
+                labelLetraAlternativa.Text = "";
+                
+                return charLetra;
+            }
+
+            return _alternativas.Count + 65;
+        }
+
 
         private void CarregarListaAlternativas()
         {
             listAlternativas.Items.Clear();
 
-            foreach (var alternativa in _alternativas)
+            foreach (var alternativa in _alternativas.OrderBy(x => x.Indice))
             {
-                listAlternativas.Items.Add(alternativa);
+                string letra = Convert.ToChar(alternativa.Indice).ToString();
+                var alternativaNova = new Alternativa
+                {
+                    Id = alternativa.Id,
+                    Correta = alternativa.Correta,
+                    Resposta = $"{letra.ToLower()}) {alternativa.Resposta}",
+                };
+                listAlternativas.Items.Add(alternativaNova);
             }
         }
 
@@ -212,9 +243,12 @@ namespace Testes.WinApp.ModuloQuestao
             if (alternativaSelecionada != null)
             {
                 labelIdAlternativa.Text = alternativaSelecionada.Id.ToString();
-                txtResposta.Text = alternativaSelecionada.Resposta;
+                labelLetraAlternativa.Text = alternativaSelecionada.Resposta.Substring(0, 1);
+                txtResposta.Text = alternativaSelecionada.Resposta.Substring(3);
                 checkBoxAlternativaCorreta.Checked = alternativaSelecionada.Correta;
             }
+
+            btnAdicionarResposta.Enabled = true;
         }
 
         private void DefinirDisciplinaSelecionada()

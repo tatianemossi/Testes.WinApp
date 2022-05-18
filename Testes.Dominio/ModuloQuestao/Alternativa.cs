@@ -6,6 +6,8 @@ namespace Testes.Dominio.ModuloQuestao
     {
         public Guid Id { get; set; }
 
+        public int Indice { get; set; }
+
         public string Resposta { get; set; }
 
         public bool Correta { get; set; }

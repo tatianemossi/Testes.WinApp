@@ -190,7 +190,10 @@ namespace Testes.WinApp.ModutoTeste
 
             if (qtdQuestoes > questoesFiltradas.Count)
             {
-                MessageBox.Show("O número solicitado ultrapassa o número de questões cadastradas.");
+                MessageBox.Show("O número solicitado ultrapassa o número de questões cadastradas.", 
+                    "Sorteando Questões", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Exclamation);
             }
             else
             {
