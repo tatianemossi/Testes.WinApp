@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="PdfSharp" Version="1.50.5147" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
@@ -16,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Testes.Dominio\Testes.Dominio.csproj" />
     <ProjectReference Include="..\Testes.Infra.Arquivos\Testes.Infra.Arquivos.csproj" />
+    <ProjectReference Include="..\testes.Infra.BancoDados\testes.Infra.BancoDados.csproj" />
   </ItemGroup>
 
   <ItemGroup>

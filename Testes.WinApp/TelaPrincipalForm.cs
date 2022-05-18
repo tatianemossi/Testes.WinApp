@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using testes.Infra.BancoDados;
 using Testes.Infra.Arquivos.Compartilhado.Serializador;
 using Testes.Infra.Arquivos.ModuloDisciplina;
 using Testes.Infra.Arquivos.ModuloMateria;
@@ -158,7 +159,7 @@ namespace Testes.WinApp
 
         private void InicializarControladores()
         {
-            var repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contextoDados);
+            var repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
             var repositorioMateria = new RepositorioMateriaEmArquivo(contextoDados);
             var repositorioQuestao = new RepositorioQuestaoObjetivaEmArquivo(contextoDados);
             var repositorioTeste = new RepositorioTesteEmArquivo(contextoDados);
