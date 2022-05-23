@@ -8,24 +8,24 @@ namespace Testes.WinApp.ModuloMateria
 {
     public class ControladorMateria : ControladorBase
     {
-        private readonly IRepositorioMateria repositorioMateria;
-        private readonly IRepositorioDisciplina repositorioDisciplina;
-        private TabelaMateriasControl tabelaMaterias;
+        private readonly IRepositorioMateria _repositorioMateria;
+        private readonly IRepositorioDisciplina _repositorioDisciplina;
+        private TabelaMateriasControl _tabelaMaterias;
 
         public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
         {
-            this.repositorioMateria = repositorioMateria;
-            this.repositorioDisciplina = repositorioDisciplina;
+            this._repositorioMateria = repositorioMateria;
+            this._repositorioDisciplina = repositorioDisciplina;
         }
 
         public override void Inserir()
         {
-            var disciplinas = repositorioDisciplina.SelecionarTodos();
+            var disciplinas = _repositorioDisciplina.SelecionarTodos();
 
-            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas, this.repositorioMateria);
+            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas, this._repositorioMateria);
             tela.Materia = new Materia();
 
-            tela.GravarRegistro = repositorioMateria.Inserir;
+            tela.GravarRegistro = _repositorioMateria.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -46,13 +46,13 @@ namespace Testes.WinApp.ModuloMateria
                 return;
             }
 
-            var disciplinas = repositorioDisciplina.SelecionarTodos();
+            var disciplinas = _repositorioDisciplina.SelecionarTodos();
 
-            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas, this.repositorioMateria);
+            TelaCadastroMateriasForm tela = new TelaCadastroMateriasForm(disciplinas, this._repositorioMateria);
 
             tela.Materia = materiaSelecionada;
 
-            tela.GravarRegistro = repositorioMateria.Editar;
+            tela.GravarRegistro = _repositorioMateria.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -78,19 +78,19 @@ namespace Testes.WinApp.ModuloMateria
 
             if (resultado == DialogResult.OK)
             {
-                repositorioMateria.Excluir(materiaSelecionada);
+                _repositorioMateria.Excluir(materiaSelecionada);
                 CarregarMaterias();
             }
         }
 
         public override UserControl ObtemListagem()
         {
-            if (tabelaMaterias == null)
-                tabelaMaterias = new TabelaMateriasControl();
+            if (_tabelaMaterias == null)
+                _tabelaMaterias = new TabelaMateriasControl();
 
             CarregarMaterias();
 
-            return tabelaMaterias;
+            return _tabelaMaterias;
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
@@ -101,18 +101,28 @@ namespace Testes.WinApp.ModuloMateria
 
         private Materia ObtemMateriaSelecionada()
         {
-            var numero = tabelaMaterias.ObtemNumeroMateriaSelecionada();
+            var numero = _tabelaMaterias.ObtemNumeroMateriaSelecionada();
 
-            return repositorioMateria.SelecionarPorNumero(numero);
+            return _repositorioMateria.SelecionarPorNumero(numero);
         }
 
         private void CarregarMaterias()
         {
-            List<Materia> materias = repositorioMateria.SelecionarTodos();
+            List<Materia> materias = _repositorioMateria.SelecionarTodos();
 
-            tabelaMaterias.AtualizarRegistros(materias);
+            CarregarDisciplinasDasMaterias(materias);
+
+            _tabelaMaterias.AtualizarRegistros(materias);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {materias.Count} Matéria(s)");
+        }
+
+        private void CarregarDisciplinasDasMaterias(List<Materia> materias)
+        {
+            foreach (var materia in materias)
+            {
+                materia.Disciplina = _repositorioDisciplina.SelecionarPorNumero(materia.NumeroDisciplina);
+            }
         }
     }
 }

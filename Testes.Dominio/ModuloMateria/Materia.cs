@@ -11,6 +11,8 @@ namespace Testes.Dominio.ModuloMateria
 
         public Disciplina Disciplina { get; set; }
 
+        public int NumeroDisciplina { get; set; }
+
         public override void Atualizar(Materia registro)
         {
         }

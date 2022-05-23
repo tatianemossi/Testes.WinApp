@@ -1,7 +1,6 @@
 ﻿using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
@@ -26,16 +25,6 @@ namespace Testes.WinApp.ModuloMateria
             CarregarDisciplinas();
         }
 
-        private void CarregarDisciplinas()
-        {
-            cmbDisciplinas.Items.Clear();
-
-            foreach (var item in _disciplinas)
-            {
-                cmbDisciplinas.Items.Add(item);
-            }
-        }
-
         public Func<Materia, ValidationResult> GravarRegistro { get; set; }
 
         public Materia Materia
@@ -50,8 +39,6 @@ namespace Testes.WinApp.ModuloMateria
                 cmbDisciplinas.SelectedItem = _materia.Disciplina;
 
                 DefinirSerieSelecionada();
-
-                DefinirDisciplinaSelecionada();
             }
         }
 
@@ -59,6 +46,7 @@ namespace Testes.WinApp.ModuloMateria
         {
             _materia.Nome = txtNome.Text;
             _materia.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
+            _materia.NumeroDisciplina = _materia.Disciplina.Numero;
             _materia.Serie = VerificarSerieMarcada();
 
             if (_repositorioMateria.MateriaJaExiste(_materia.Nome, _materia.Numero))
@@ -84,18 +72,6 @@ namespace Testes.WinApp.ModuloMateria
             }
         }
 
-        public string VerificarSerieMarcada()
-        {
-            foreach (RadioButton radioButton in grupoSerie.Controls)
-            {
-                if (radioButton.Checked)
-                {
-                    return radioButton.Text; 
-                }
-            }
-            return string.Empty;
-        }
-
         private void TelaCadastroMateriasForm_Load(object sender, EventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
@@ -106,16 +82,32 @@ namespace Testes.WinApp.ModuloMateria
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
 
+        private string VerificarSerieMarcada()
+        {
+            foreach (RadioButton radioButton in grupoSerie.Controls)
+            {
+                if (radioButton.Checked)
+                {
+                    return radioButton.Text;
+                }
+            }
+            return string.Empty;
+        }
+
         private void DefinirSerieSelecionada()
         {
             rbPrimeiraSerie.Checked = _materia.Serie == "1ª Série";
             rbSegundaSerie.Checked = _materia.Serie == "2ª Série";
         }
 
-        private void DefinirDisciplinaSelecionada()
+        private void CarregarDisciplinas()
         {
-            var disciplina = _disciplinas.FirstOrDefault(x => x.Numero == _materia.Disciplina?.Numero);
-            cmbDisciplinas.SelectedItem = disciplina;
+            cmbDisciplinas.Items.Clear();
+
+            foreach (var item in _disciplinas)
+            {
+                cmbDisciplinas.Items.Add(item);
+            }
         }
     }
 }

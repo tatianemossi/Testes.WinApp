@@ -23,9 +23,11 @@ namespace Testes.WinApp.ModuloMateria
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina" },
+                new DataGridViewTextBoxColumn { DataPropertyName = "Série", HeaderText = "Série"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Série", HeaderText = "Série"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina_Numero", HeaderText = "Número Disciplina" },
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina_Nome", HeaderText = "Disciplina" },
             };
 
             return colunas;
@@ -42,7 +44,7 @@ namespace Testes.WinApp.ModuloMateria
 
             foreach (var materia in materias)
             {
-                grid.Rows.Add(materia.Numero, materia.Nome, materia.Disciplina.Nome, materia.Serie);
+                grid.Rows.Add(materia.Numero, materia.Nome, materia.Serie, materia.Disciplina?.Nome, materia.NumeroDisciplina);
             }
         }
     }
