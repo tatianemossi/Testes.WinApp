@@ -44,7 +44,7 @@ namespace Testes.WinApp.ModuloMateria
 
             foreach (var materia in materias)
             {
-                grid.Rows.Add(materia.Numero, materia.Nome, materia.Serie, materia.Disciplina?.Nome, materia.NumeroDisciplina);
+                grid.Rows.Add(materia.Numero, materia.Nome, materia.Serie, materia.NumeroDisciplina, materia.Disciplina?.Nome);
             }
         }
     }

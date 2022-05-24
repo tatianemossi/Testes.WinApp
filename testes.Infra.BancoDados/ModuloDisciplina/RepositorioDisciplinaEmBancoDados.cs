@@ -53,6 +53,14 @@ namespace testes.Infra.BancoDados
 		        WHERE
                     [NUMERO] = @NUMERO";
 
+        private const string sqlSelecionarPorNome =
+            @"SELECT 
+	            [NOME]
+            FROM 
+	            [TBDISCIPLINA]
+            WHERE
+                    [NOME] = @NOME";
+
         #endregion
 
         public ValidationResult Inserir(Disciplina novaDisciplina)
@@ -187,7 +195,31 @@ namespace testes.Infra.BancoDados
 
         public bool DisciplinaJaExiste(string nome, int numero)
         {
-            return false;
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            try
+            {
+                SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
+
+                comandoSelecao.Parameters.AddWithValue("NOME", nome);
+
+                conexaoComBanco.Open();
+
+                SqlDataReader leitorDisciplina = comandoSelecao.ExecuteReader();
+
+                if (leitorDisciplina.Read())
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conexaoComBanco.Close();
+            }            
         }
     }
 }

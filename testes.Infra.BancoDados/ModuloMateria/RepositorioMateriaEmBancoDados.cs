@@ -34,11 +34,11 @@ namespace testes.Infra.BancoDados.ModuloMateria
         private const string sqlEditar =
             @"UPDATE [TBMATERIA]	
 		        SET
-			        [NOME] = @NOME
-                    [SERIE] = @SERIE
-                    [DISCIPLINA_NUMERO] = @DISCIPLINA_NUMERO
+			        NOME = @NOME,
+                    SERIE = @SERIE,
+                    DISCIPLINA_NUMERO = @DISCIPLINA_NUMERO
 		        WHERE
-			        [NUMERO] = @NUMERO";
+			        NUMERO = @NUMERO";
 
         private const string sqlExcluir =
             @"DELETE FROM [TBMATERIA]
@@ -51,7 +51,6 @@ namespace testes.Infra.BancoDados.ModuloMateria
 	            MT.NOME,
 	            MT.SERIE,
 	            MT.DISCIPLINA_NUMERO,
-
 	            D.NOME AS DISCIPLINA_NOME
             FROM 
 	            TBMATERIA AS MT INNER JOIN
@@ -60,14 +59,33 @@ namespace testes.Infra.BancoDados.ModuloMateria
 
         private const string sqlSelecionarPorNumero =
             @"SELECT 
-		            [NUMERO], 
-		            [NOME],
-                    [SERIE],
-                    [DISCIPLINA_NUMERO]
+		            MT.NUMERO, 
+		            MT.NOME,
+                    MT.SERIE,
+                    MT.DISCIPLINA_NUMERO,
+                    D.NOME AS DISCIPLINA_NOME
+	         FROM 
+		            TBMATERIA AS MT INNER JOIN
+	                TBDISCIPLINA AS D ON 
+	                MT.DISCIPLINA_NUMERO = D.NUMERO
+             WHERE
+                    MT.NUMERO = @NUMERO";
+
+        private const string sqlSelecionarPorNome =
+            @"SELECT 
+		            [NOME]
 	            FROM 
 		            [TBMATERIA]
 		        WHERE
-                    [NUMERO] = @NUMERO";
+                    [NOME] = @NOME";
+
+        private const string sqlSelecionarMateriaPeloNumeroDisciplina =
+            @"SELECT 
+	            *
+            FROM 
+	            [DBO].[TBMATERIA]
+            WHERE
+	            DISCIPLINA_NUMERO = NUMERO";
 
         #endregion
 
@@ -76,8 +94,6 @@ namespace testes.Infra.BancoDados.ModuloMateria
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
-
-            comandoInsercao.Parameters.AddWithValue("DISCIPLINA_NUMERO", materia.Disciplina.Numero);
 
             ConfigurarParametrosMateria(materia, comandoInsercao);
 
@@ -102,6 +118,8 @@ namespace testes.Infra.BancoDados.ModuloMateria
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
+
+            comandoEdicao.Parameters.AddWithValue("NUMERO", materia.Numero);
 
             ConfigurarParametrosMateria(materia, comandoEdicao);
 
@@ -191,11 +209,13 @@ namespace testes.Infra.BancoDados.ModuloMateria
                 Numero = numero,
                 Nome = nome,
                 Serie = serie,
+                NumeroDisciplina = numeroDisciplina,
                 Disciplina = new Disciplina
                 {
                     Numero = numeroDisciplina,
                     Nome = nomeDisciplina
                 }
+
             };
 
             return materia;
@@ -211,12 +231,60 @@ namespace testes.Infra.BancoDados.ModuloMateria
 
         public bool MateriaJaExiste(string nome, int numero)
         {
-            return false;
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            try
+            {
+                SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
+
+                comandoSelecao.Parameters.AddWithValue("NOME", nome);
+
+                conexaoComBanco.Open();
+
+                SqlDataReader leitorMateria = comandoSelecao.ExecuteReader();
+
+                if (leitorMateria.Read())
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conexaoComBanco.Close();
+            }
         }
 
         public bool ExisteMateriaPeloNumeroDisciplina(int numero)
         {
-            return false;
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            try
+            {
+                SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
+
+                comandoSelecao.Parameters.AddWithValue("NUMERO", numero);
+
+                conexaoComBanco.Open();
+
+                SqlDataReader leitorMateria = comandoSelecao.ExecuteReader();
+
+                if (leitorMateria.Read())
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conexaoComBanco.Close();
+            }
         }
     }
 }
