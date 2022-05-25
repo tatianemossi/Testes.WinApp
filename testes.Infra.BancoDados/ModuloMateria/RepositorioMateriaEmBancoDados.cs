@@ -91,6 +91,13 @@ namespace testes.Infra.BancoDados.ModuloMateria
 
         public ValidationResult Inserir(Materia materia)
         {
+            var validador = new ValidadorMateria();
+
+            var resultadoValidacao = validador.Validate(materia);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
@@ -226,7 +233,6 @@ namespace testes.Infra.BancoDados.ModuloMateria
             comando.Parameters.AddWithValue("NOME", novaMateria.Nome);
             comando.Parameters.AddWithValue("SERIE", novaMateria.Serie);
             comando.Parameters.AddWithValue("DISCIPLINA_NUMERO", novaMateria.NumeroDisciplina);
-            comando.Parameters.AddWithValue("DISCIPLINA_NOME", novaMateria.Disciplina.Nome);
         }
 
         public bool MateriaJaExiste(string nome, int numero)

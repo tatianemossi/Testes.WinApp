@@ -6,9 +6,9 @@ using Testes.Infra.Arquivos.Compartilhado.Serializador;
 
 namespace Testes.Infra.Arquivos.ModuloQuestao
 {
-    public class RepositorioQuestaoObjetivaEmArquivo : RepositorioEmArquivoBase<QuestaoObjetiva>, IRepositorioQuestaoObjetiva
+    public class RepositorioQuestaoObjetivaEmBancoDados : RepositorioEmArquivoBase<QuestaoObjetiva>, IRepositorioQuestaoObjetiva
     {
-        public RepositorioQuestaoObjetivaEmArquivo(DataContext dataContext) : base(dataContext)
+        public RepositorioQuestaoObjetivaEmBancoDados(DataContext dataContext) : base(dataContext)
         {
 
         }

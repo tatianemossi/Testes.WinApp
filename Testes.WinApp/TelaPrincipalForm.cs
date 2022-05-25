@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using testes.Infra.BancoDados;
 using testes.Infra.BancoDados.ModuloMateria;
+using testes.Infra.BancoDados.ModuloQuestao;
 using Testes.Infra.Arquivos.Compartilhado.Serializador;
-using Testes.Infra.Arquivos.ModuloDisciplina;
-using Testes.Infra.Arquivos.ModuloMateria;
 using Testes.Infra.Arquivos.ModuloQuestao;
 using Testes.Infra.Arquivos.ModuloTeste;
 using Testes.WinApp.Compartilhado;
@@ -162,7 +161,7 @@ namespace Testes.WinApp
         {
             var repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
             var repositorioMateria = new RepositorioMateriaEmBancoDados();
-            var repositorioQuestao = new RepositorioQuestaoObjetivaEmArquivo(contextoDados);
+            var repositorioQuestao = new RepositorioQuestaoEmBancoDados();
             var repositorioTeste = new RepositorioTesteEmArquivo(contextoDados);
 
             controladores = new Dictionary<string, ControladorBase>();

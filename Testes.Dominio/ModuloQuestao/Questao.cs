@@ -12,13 +12,17 @@ namespace Testes.Dominio.ModuloQuestao
             Alternativas = new List<Alternativa>();
         }
 
+        public string Enunciado { get; set; }
+
         public string Bimestre { get; set; }
+
+        public int NumeroMateria { get; set; }
 
         public Materia Materia { get; set; }
 
-        public Disciplina Disciplina { get; set; }
+        public int NumeroDisciplina { get; set; }
 
-        public string Enunciado { get; set; }
+        public Disciplina Disciplina { get; set; }
 
         public List<Alternativa> Alternativas { get; set; }
 
