@@ -78,12 +78,6 @@ namespace testes.Infra.BancoDados.ModuloQuestao
             WHERE
                     Q.NUMERO = @NUMERO";
 
-        //private const string sqlSelecionarAlternativas =
-        //    @"SELECT 
-        //        NUMERO,
-
-        //        ";
-
         #endregion
 
         public ValidationResult Inserir(QuestaoObjetiva questao)
@@ -195,8 +189,6 @@ namespace testes.Infra.BancoDados.ModuloQuestao
 
             conexaoComBanco.Close();
 
-            CarregarAlternativas(questao);
-
             return questao;
         }
 
@@ -245,26 +237,5 @@ namespace testes.Infra.BancoDados.ModuloQuestao
             comando.Parameters.AddWithValue("MATERIA_NUMERO", questao.Materia.Numero);
         }
 
-        private bool CarregarAlternativas(QuestaoObjetiva questao)
-        {
-            return true;
-            //SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            //SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarAlternativas, conexaoComBanco);
-
-            //conexaoComBanco.Open();
-            //SqlDataReader leitorQuestao = comandoSelecao.ExecuteReader();
-
-            //List<QuestaoObjetiva> questoes = new();
-
-            //while (leitorQuestao.Read())
-            //{
-            //    QuestaoObjetiva questaoObjetiva = ConverterParaQuestao(leitorQuestao);
-
-            //    questoes.Add(questaoObjetiva);
-            //}
-
-            //conexaoComBanco.Close();
-        }
     }
 }

@@ -11,18 +11,19 @@ namespace Testes.WinApp.ModuloQuestao
 {
     public partial class TelaCadastroQuestoesForm : Form
     {
+        private IRepositorioAlternativa _repositorioAlternativa;
         private QuestaoObjetiva _questaoObjetiva;
-        private ControladorQuestao _controladorQuestao;
         private List<Materia> _materias;
         private List<Disciplina> _disciplinas;
         private List<Alternativa> _alternativas = new();
 
-        public TelaCadastroQuestoesForm(List<Disciplina> disciplinas, List<Materia> materias)
+        public TelaCadastroQuestoesForm(List<Disciplina> disciplinas, List<Materia> materias, IRepositorioAlternativa repositorioAlternativa)
         {
             InitializeComponent();
 
             _materias = materias;
             _disciplinas = disciplinas;
+            _repositorioAlternativa = repositorioAlternativa;
 
             CarregarDisciplinas();
             CarregarMaterias(_materias);
@@ -79,7 +80,16 @@ namespace Testes.WinApp.ModuloQuestao
 
             var resultadoValidacao = GravarRegistro(QuestaoObjetiva);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsValid == true)
+            {
+                _repositorioAlternativa.DeletarAlternativasPelaNumeroQuestao(_questaoObjetiva.Numero);
+                foreach (var alternativa in _alternativas)
+                {
+                    alternativa.Questao_Numero = _questaoObjetiva.Numero;
+                    _repositorioAlternativa.Inserir(alternativa);
+                }
+            }
+            else
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
@@ -148,15 +158,15 @@ namespace Testes.WinApp.ModuloQuestao
         {
             if (AlternativaEhValida())
             {
-                if (labelIdAlternativa.Text.Length > 0)
-                    _alternativas.RemoveAll(x => x.Id == new Guid(labelIdAlternativa.Text));
+                if (labelLetraAlternativa.Text.Length > 0)
+                    _alternativas.RemoveAll(x => x.Indice == BuscarIndiceAlternativa());
 
                 var novaAlternativa = new Alternativa
                 {
-                    Id = Guid.NewGuid(),
-                    Indice = BuscarIndiceAlternativas(),
+                    Indice = BuscarIndiceAlternativa(),
                     Resposta = txtResposta.Text,
-                    Correta = checkBoxAlternativaCorreta.Checked
+                    Correta = checkBoxAlternativaCorreta.Checked,
+                    Questao_Numero = _questaoObjetiva.Numero
                 };
 
                 _alternativas.Add(novaAlternativa);
@@ -165,6 +175,7 @@ namespace Testes.WinApp.ModuloQuestao
 
                 checkBoxAlternativaCorreta.Checked = false;
                 txtResposta.Text = "";
+                labelLetraAlternativa.Text = "";
 
                 DesabilitaBotaoAdicionarResposta();
             }
@@ -176,20 +187,17 @@ namespace Testes.WinApp.ModuloQuestao
                 btnAdicionarResposta.Enabled = false;
         }
 
-        private int BuscarIndiceAlternativas()
+        private int BuscarIndiceAlternativa()
         {
             if (labelLetraAlternativa.Text.Length > 0)
             {
                 char charLetra = char.Parse(labelLetraAlternativa.Text.ToUpper());
-                
-                labelLetraAlternativa.Text = "";
-                
+
                 return charLetra;
             }
 
             return _alternativas.Count + 65;
         }
-
 
         private void CarregarListaAlternativas()
         {
@@ -200,9 +208,11 @@ namespace Testes.WinApp.ModuloQuestao
                 string letra = Convert.ToChar(alternativa.Indice).ToString();
                 var alternativaNova = new Alternativa
                 {
-                    Id = alternativa.Id,
+                    Numero = alternativa.Numero,
+                    Indice = alternativa.Indice,
                     Correta = alternativa.Correta,
                     Resposta = $"{letra.ToLower()}) {alternativa.Resposta}",
+                    Questao_Numero = alternativa.Questao_Numero
                 };
                 listAlternativas.Items.Add(alternativaNova);
             }
@@ -210,6 +220,8 @@ namespace Testes.WinApp.ModuloQuestao
 
         private bool AlternativaEhValida()
         {
+            var indiceAlternativa = BuscarIndiceAlternativa();
+
             if (txtResposta.Text.Trim() == "")
             {
                 MessageBox.Show("Resposta deve ser cadastrada!", "Adicionando Alternativas",
@@ -217,16 +229,14 @@ namespace Testes.WinApp.ModuloQuestao
                 return false;
             }
 
-            var guid = labelIdAlternativa.Text.Length > 0 ? new Guid(labelIdAlternativa.Text) : Guid.Empty;
-
-            if (checkBoxAlternativaCorreta.Checked && _alternativas.Any(x => x.Correta && x.Id != guid))
+            if (checkBoxAlternativaCorreta.Checked && _alternativas.Any(x => x.Correta && x.Indice != indiceAlternativa))
             {
                 MessageBox.Show("Alternativa correta já está cadastrada!", "Adicionando Alternativas",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
 
-            if (_alternativas.Any(x => x.Resposta.ToUpper() == txtResposta.Text.ToUpper() && x.Id != guid))
+            if (_alternativas.Any(x => x.Resposta.ToUpper() == txtResposta.Text.ToUpper() && x.Indice != indiceAlternativa))
             {
                 MessageBox.Show("Resposta já cadastrada em outra Alternativa!", "Adicionando Alternativas",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -242,7 +252,7 @@ namespace Testes.WinApp.ModuloQuestao
 
             if (alternativaSelecionada != null)
             {
-                labelIdAlternativa.Text = alternativaSelecionada.Id.ToString();
+                labelIdAlternativa.Text = alternativaSelecionada.Numero.ToString();
                 labelLetraAlternativa.Text = alternativaSelecionada.Resposta.Substring(0, 1);
                 txtResposta.Text = alternativaSelecionada.Resposta.Substring(3);
                 checkBoxAlternativaCorreta.Checked = alternativaSelecionada.Correta;

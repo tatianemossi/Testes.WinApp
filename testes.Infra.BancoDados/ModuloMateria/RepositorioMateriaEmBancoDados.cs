@@ -85,7 +85,7 @@ namespace testes.Infra.BancoDados.ModuloMateria
             FROM 
 	            [DBO].[TBMATERIA]
             WHERE
-	            DISCIPLINA_NUMERO = NUMERO";
+	            DISCIPLINA_NUMERO = @NUMERO";
 
         #endregion
 
@@ -270,7 +270,7 @@ namespace testes.Infra.BancoDados.ModuloMateria
 
             try
             {
-                SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
+                SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarMateriaPeloNumeroDisciplina, conexaoComBanco);
 
                 comandoSelecao.Parameters.AddWithValue("NUMERO", numero);
 

@@ -9,28 +9,30 @@ namespace Testes.WinApp.ModuloQuestao
 {
     public class ControladorQuestao : ControladorBase
     {
-        private readonly IRepositorioQuestaoObjetiva repositorioQuestao;
-        private readonly IRepositorioMateria repositorioMateria;
-        private readonly IRepositorioDisciplina repositorioDisciplina;
+        private readonly IRepositorioQuestaoObjetiva _repositorioQuestao;
+        private readonly IRepositorioMateria _repositorioMateria;
+        private readonly IRepositorioDisciplina _repositorioDisciplina;
+        private readonly IRepositorioAlternativa _repositorioAlternativa;
         private TabelaQuestoesControl tabelaQuestoes;
 
         public ControladorQuestao(IRepositorioQuestaoObjetiva repositorioQuestao, IRepositorioMateria repositorioMateria,
-            IRepositorioDisciplina repositorioDisciplina)
+            IRepositorioDisciplina repositorioDisciplina, IRepositorioAlternativa repositorioAlternativa)
         {
-            this.repositorioQuestao = repositorioQuestao;
-            this.repositorioMateria = repositorioMateria;
-            this.repositorioDisciplina = repositorioDisciplina;
+            _repositorioQuestao = repositorioQuestao;
+            _repositorioMateria = repositorioMateria;
+            _repositorioDisciplina = repositorioDisciplina;
+            _repositorioAlternativa = repositorioAlternativa;
         }
 
         public override void Inserir()
         {
-            var disciplinas = repositorioDisciplina.SelecionarTodos();
-            var materias = repositorioMateria.SelecionarTodos();
+            var disciplinas = _repositorioDisciplina.SelecionarTodos();
+            var materias = _repositorioMateria.SelecionarTodos();
 
-            TelaCadastroQuestoesForm tela = new TelaCadastroQuestoesForm(disciplinas, materias);
+            TelaCadastroQuestoesForm tela = new TelaCadastroQuestoesForm(disciplinas, materias, _repositorioAlternativa);
             tela.QuestaoObjetiva = new QuestaoObjetiva();
 
-            tela.GravarRegistro = repositorioQuestao.Inserir;
+            tela.GravarRegistro = _repositorioQuestao.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -51,14 +53,14 @@ namespace Testes.WinApp.ModuloQuestao
                 return;
             }
 
-            var disciplinas = repositorioDisciplina.SelecionarTodos();
-            var materias = repositorioMateria.SelecionarTodos();
+            var disciplinas = _repositorioDisciplina.SelecionarTodos();
+            var materias = _repositorioMateria.SelecionarTodos();
 
-            TelaCadastroQuestoesForm tela = new TelaCadastroQuestoesForm(disciplinas, materias);
+            TelaCadastroQuestoesForm tela = new TelaCadastroQuestoesForm(disciplinas, materias, _repositorioAlternativa);
 
             tela.QuestaoObjetiva = QuestaoSelecionada;
 
-            tela.GravarRegistro = repositorioQuestao.Editar;
+            tela.GravarRegistro = _repositorioQuestao.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -84,7 +86,7 @@ namespace Testes.WinApp.ModuloQuestao
 
             if (resultado == DialogResult.OK)
             {
-                repositorioQuestao.Excluir(QuestaoSelecionada);
+                _repositorioQuestao.Excluir(QuestaoSelecionada);
                 CarregarQuestoes();
             }
         }
@@ -104,17 +106,20 @@ namespace Testes.WinApp.ModuloQuestao
             return new ConfiguracaoToolboxQuestao();
         }
 
-
         private QuestaoObjetiva ObtemQuestaoSelecionada()
         {
             var numero = tabelaQuestoes.ObtemNumeroQuestaoSelecionada();
 
-            return repositorioQuestao.SelecionarPorNumero(numero);
+            var questao = _repositorioQuestao.SelecionarPorNumero(numero);
+
+            questao.Alternativas = _repositorioAlternativa.SelecionarPorNumeroQuestao(numero);
+
+            return questao;
         }
 
         private void CarregarQuestoes()
         {
-            List<QuestaoObjetiva> questoes = repositorioQuestao.SelecionarTodos();
+            List<QuestaoObjetiva> questoes = _repositorioQuestao.SelecionarTodos();
 
             tabelaQuestoes.AtualizarRegistros(questoes);
 

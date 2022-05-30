@@ -219,7 +219,7 @@ namespace testes.Infra.BancoDados
             finally
             {
                 conexaoComBanco.Close();
-            }            
+            }
         }
     }
 }

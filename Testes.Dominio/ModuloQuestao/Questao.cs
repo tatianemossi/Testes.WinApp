@@ -16,13 +16,16 @@ namespace Testes.Dominio.ModuloQuestao
 
         public string Bimestre { get; set; }
 
+
         public int NumeroMateria { get; set; }
 
         public Materia Materia { get; set; }
 
+
         public int NumeroDisciplina { get; set; }
 
         public Disciplina Disciplina { get; set; }
+
 
         public List<Alternativa> Alternativas { get; set; }
 

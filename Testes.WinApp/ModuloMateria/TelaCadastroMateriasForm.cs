@@ -10,7 +10,6 @@ namespace Testes.WinApp.ModuloMateria
     public partial class TelaCadastroMateriasForm : Form
     {
         private Materia _materia;
-        private ControladorMateria _controladorMateria;
         private IRepositorioMateria _repositorioMateria;
         private List<Disciplina> _disciplinas;
 

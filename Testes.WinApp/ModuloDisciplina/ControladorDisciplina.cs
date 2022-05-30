@@ -8,22 +8,22 @@ namespace Testes.WinApp.ModuloDisciplina
 {
     public class ControladorDisciplina : ControladorBase
     {
-        private readonly IRepositorioDisciplina repositorioDisciplina;
-        private readonly IRepositorioMateria repositorioMateria;
-        private TabelaDisiplinasControl tabelaDisciplinas;
+        private readonly IRepositorioDisciplina _repositorioDisciplina;
+        private readonly IRepositorioMateria _repositorioMateria;
+        private TabelaDisiplinasControl _tabelaDisciplinas;
 
         public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
         {
-            this.repositorioDisciplina = repositorioDisciplina;
-            this.repositorioMateria = repositorioMateria;
+            _repositorioDisciplina = repositorioDisciplina;
+            _repositorioMateria = repositorioMateria;
         }
 
         public override void Inserir()
         {
-            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm(this.repositorioDisciplina);
+            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm(this._repositorioDisciplina);
             tela.Disciplina = new Disciplina();
 
-            tela.GravarRegistro = repositorioDisciplina.Inserir;
+            tela.GravarRegistro = _repositorioDisciplina.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -42,11 +42,11 @@ namespace Testes.WinApp.ModuloDisciplina
                 return;
             }
 
-            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm(repositorioDisciplina);
+            TelaCadastroDisciplinasForm tela = new TelaCadastroDisciplinasForm(_repositorioDisciplina);
 
             tela.Disciplina = DisciplinaSelecionada;
 
-            tela.GravarRegistro = repositorioDisciplina.Editar;
+            tela.GravarRegistro = _repositorioDisciplina.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -67,7 +67,7 @@ namespace Testes.WinApp.ModuloDisciplina
                 return;
             }
 
-            if (repositorioMateria.ExisteMateriaPeloNumeroDisciplina(disciplinaSelecionada.Numero))
+            if (_repositorioMateria.ExisteMateriaPeloNumeroDisciplina(disciplinaSelecionada.Numero))
             {
                 MessageBox.Show("Não é possível excluir! A Disciplina está relacionada com uma matéria.",
                "Exclusão de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -79,19 +79,19 @@ namespace Testes.WinApp.ModuloDisciplina
 
             if (resultado == DialogResult.OK)
             {
-                repositorioDisciplina.Excluir(disciplinaSelecionada);
+                _repositorioDisciplina.Excluir(disciplinaSelecionada);
                 CarregarDisciplinas();
             }
         }
 
         public override UserControl ObtemListagem()
         {
-            if (tabelaDisciplinas == null)
-                tabelaDisciplinas = new TabelaDisiplinasControl();
+            if (_tabelaDisciplinas == null)
+                _tabelaDisciplinas = new TabelaDisiplinasControl();
 
             CarregarDisciplinas();
 
-            return tabelaDisciplinas;
+            return _tabelaDisciplinas;
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
@@ -101,16 +101,16 @@ namespace Testes.WinApp.ModuloDisciplina
 
         private Disciplina ObtemDisciplinaSelecionada()
         {
-            var numero = tabelaDisciplinas.ObtemNumeroDisciplinaSelecionada();
+            var numero = _tabelaDisciplinas.ObtemNumeroDisciplinaSelecionada();
 
-            return repositorioDisciplina.SelecionarPorNumero(numero);
+            return _repositorioDisciplina.SelecionarPorNumero(numero);
         }
 
         private void CarregarDisciplinas()
         {
-            List<Disciplina> Disciplinas = repositorioDisciplina.SelecionarTodos();
+            List<Disciplina> Disciplinas = _repositorioDisciplina.SelecionarTodos();
 
-            tabelaDisciplinas.AtualizarRegistros(Disciplinas);
+            _tabelaDisciplinas.AtualizarRegistros(Disciplinas);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {Disciplinas.Count} Disciplina(s)");
         }

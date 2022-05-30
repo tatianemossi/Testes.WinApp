@@ -162,13 +162,14 @@ namespace Testes.WinApp
             var repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
             var repositorioMateria = new RepositorioMateriaEmBancoDados();
             var repositorioQuestao = new RepositorioQuestaoEmBancoDados();
-            var repositorioTeste = new RepositorioTesteEmArquivo(contextoDados);
+            var repositorioAlternativa = new RepositorioAlternativaEmBancoDados();
+            var repositorioTeste = new RepositorioTesteEmArquivo(contextoDados);            
 
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Disciplina", new ControladorDisciplina(repositorioDisciplina, repositorioMateria));
             controladores.Add("Matéria", new ControladorMateria(repositorioMateria, repositorioDisciplina));
-            controladores.Add("Questão", new ControladorQuestao(repositorioQuestao, repositorioMateria, repositorioDisciplina));
+            controladores.Add("Questão", new ControladorQuestao(repositorioQuestao, repositorioMateria, repositorioDisciplina, repositorioAlternativa));
             controladores.Add("Teste", new ControladorTeste(repositorioTeste, repositorioQuestao, repositorioMateria, repositorioDisciplina));
         }
     }
