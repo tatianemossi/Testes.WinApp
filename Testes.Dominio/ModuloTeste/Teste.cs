@@ -20,12 +20,21 @@ namespace Testes.Dominio.ModuloTeste
 
         public bool Recuperacao { get; set; }
 
-        public int NumeroQuestoes { get; set; }
+        public int QuantidadeQuestoes { get; set; }
 
         public List<QuestaoObjetiva> QuestoesObjetivas { get; set; }
 
+        public int NumeroDisciplina { get; set; }
+        
+        public int NumeroMateria { get; set; }
+
         public override void Atualizar(Teste registro)
         {
+        }
+
+        public Teste()
+        {
+            QuestoesObjetivas = new();
         }
 
         public Teste Clone()
@@ -41,7 +50,7 @@ namespace Testes.Dominio.ModuloTeste
                 Disciplina = this.Disciplina,
                 Materia = this.Materia,
                 Recuperacao = this.Recuperacao,
-                NumeroQuestoes = this.NumeroQuestoes,
+                QuantidadeQuestoes = this.QuantidadeQuestoes,
                 QuestoesObjetivas = questoesCopiadas.ToList()
             };
         }

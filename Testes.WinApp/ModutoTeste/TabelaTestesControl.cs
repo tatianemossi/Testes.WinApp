@@ -49,7 +49,7 @@ namespace Testes.WinApp.ModutoTeste
                 var textoMateria = teste.Materia == null ? "Todas" : teste.Materia.Nome;
 
                 grid.Rows.Add(teste.Numero, teste.Titulo, teste.Data.ToString(),
-                    teste.Disciplina.Nome, textoMateria, teste.NumeroQuestoes);
+                    teste.Disciplina.Nome, textoMateria, teste.QuantidadeQuestoes);
             }
         }
     }

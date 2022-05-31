@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using testes.Infra.BancoDados;
 using testes.Infra.BancoDados.ModuloMateria;
 using testes.Infra.BancoDados.ModuloQuestao;
+using testes.Infra.BancoDados.ModuloTeste;
 using Testes.Infra.Arquivos.Compartilhado.Serializador;
 using Testes.Infra.Arquivos.ModuloQuestao;
 using Testes.Infra.Arquivos.ModuloTeste;
@@ -163,7 +164,7 @@ namespace Testes.WinApp
             var repositorioMateria = new RepositorioMateriaEmBancoDados();
             var repositorioQuestao = new RepositorioQuestaoEmBancoDados();
             var repositorioAlternativa = new RepositorioAlternativaEmBancoDados();
-            var repositorioTeste = new RepositorioTesteEmArquivo(contextoDados);            
+            var repositorioTeste = new RepositorioTesteEmBancoDados();            
 
             controladores = new Dictionary<string, ControladorBase>();
 

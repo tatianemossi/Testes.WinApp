@@ -55,6 +55,10 @@ namespace Testes.WinApp.ModutoTeste
 
         public Func<Teste, ValidationResult> GravarRegistro { get; set; }
 
+        public Func<Teste, List<QuestaoObjetiva>, ValidationResult> InserirRegistro { get; set; }
+
+        public Func<Teste, List<QuestaoObjetiva>, ValidationResult> EditarRegistro { get; set; }
+
         public Teste Teste
         {
             get { return _teste; }
@@ -64,7 +68,7 @@ namespace Testes.WinApp.ModutoTeste
 
                 txtNumero.Text = _teste.Numero.ToString();
                 txtTitulo.Text = _teste.Titulo;
-                txtQtdQuestoes.Text = _teste.NumeroQuestoes.ToString();
+                txtQtdQuestoes.Text = _teste.QuantidadeQuestoes.ToString();
                 checkBoxRecuperacao.Checked = _teste.Recuperacao;
                 _questoesSorteadas = _teste.QuestoesObjetivas == null ? new List<QuestaoObjetiva>() : _teste.QuestoesObjetivas;
 
@@ -109,12 +113,17 @@ namespace Testes.WinApp.ModutoTeste
             _teste.Titulo = txtTitulo.Text;
             _teste.Disciplina = (Disciplina)cmbDisciplinas.SelectedItem;
             _teste.Materia = (Materia)cmbMaterias.SelectedItem;
-            _teste.NumeroQuestoes = txtQtdQuestoes.Text.Length > 0 ? Convert.ToInt32(txtQtdQuestoes.Text) : 0;
+            _teste.QuantidadeQuestoes = txtQtdQuestoes.Text.Length > 0 ? Convert.ToInt32(txtQtdQuestoes.Text) : 0;
             _teste.Data = dtData.Value;
             _teste.Recuperacao = checkBoxRecuperacao.Checked;
             _teste.QuestoesObjetivas = _questoesSorteadas;
 
-            var resultadoValidacao = GravarRegistro(Teste);
+            ValidationResult resultadoValidacao = null;
+
+            if (_teste.Numero == 0)
+                resultadoValidacao = InserirRegistro(Teste, _questoesSorteadas);
+            else
+                resultadoValidacao = EditarRegistro(Teste, _questoesSorteadas);
 
             if (resultadoValidacao.IsValid == false)
             {
@@ -125,7 +134,6 @@ namespace Testes.WinApp.ModutoTeste
                 DialogResult = DialogResult.None;
             }
         }
-
 
         private void TelaCadastroQuestoesForm_Load(object sender, EventArgs e)
         {
@@ -170,7 +178,7 @@ namespace Testes.WinApp.ModutoTeste
                         MessageBoxIcon.Exclamation);
                     txtQtdQuestoes.Text = "5";
                 }
-            }            
+            }
         }
 
         private void btnSortearQuestoes_Click(object sender, EventArgs e)
@@ -190,9 +198,9 @@ namespace Testes.WinApp.ModutoTeste
 
             if (qtdQuestoes > questoesFiltradas.Count)
             {
-                MessageBox.Show("O número solicitado ultrapassa o número de questões cadastradas.", 
-                    "Sorteando Questões", 
-                    MessageBoxButtons.OK, 
+                MessageBox.Show("O número solicitado ultrapassa o número de questões cadastradas.",
+                    "Sorteando Questões",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
             }
             else
@@ -227,9 +235,8 @@ namespace Testes.WinApp.ModutoTeste
                 cmbMaterias.SelectedIndex = -1;
             }
             else
-            {
                 cmbMaterias.Enabled = true;
-            }
+
         }
     }
 }

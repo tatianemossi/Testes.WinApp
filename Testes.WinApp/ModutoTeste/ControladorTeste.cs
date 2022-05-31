@@ -38,7 +38,7 @@ namespace Testes.WinApp.ModutoTeste
             TelaCadastroTestesForm tela = new TelaCadastroTestesForm(disciplinas, materias, questoes);
             tela.Teste = new Teste();
 
-            tela.GravarRegistro = _repositorioTeste.Inserir;
+            tela.InserirRegistro = _repositorioTeste.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -67,7 +67,7 @@ namespace Testes.WinApp.ModutoTeste
 
             tela.Teste = testeSelecionado;
 
-            tela.GravarRegistro = _repositorioTeste.Editar;
+            tela.EditarRegistro = _repositorioTeste.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -96,7 +96,7 @@ namespace Testes.WinApp.ModutoTeste
 
             tela.Teste = testeSelecionado.Clone();
 
-            tela.GravarRegistro = _repositorioTeste.Inserir;
+            tela.InserirRegistro = _repositorioTeste.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -233,7 +233,6 @@ namespace Testes.WinApp.ModutoTeste
         {
             return new ConfiguracaoToolboxTeste();
         }
-
 
         private Teste ObtemTesteSelecionado()
         {

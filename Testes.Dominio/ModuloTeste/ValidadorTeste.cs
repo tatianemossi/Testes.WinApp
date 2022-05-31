@@ -22,7 +22,7 @@ namespace Testes.Dominio.ModuloTeste
                .NotNull().NotEmpty().When(x => x.Recuperacao == false)
                .WithMessage("Matéria ou campo de Recuperação deve ser selecionado.");
 
-            RuleFor(x => x.NumeroQuestoes)
+            RuleFor(x => x.QuantidadeQuestoes)
                .NotNull().NotEmpty();
 
             RuleFor(x => x.QuestoesObjetivas)
